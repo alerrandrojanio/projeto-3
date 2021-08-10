@@ -22,7 +22,7 @@
                             <tr  v-for="medico in medicos " :key="medico.id" >
                                 <td>{{ medico.nome}}</td>
                                 <td>{{ medico.cpf }}</td>
-                                <td>{{ medico.dtNascimento }}</td>
+                                <td>{{ medico.dt_nascimento }}</td>
                                 <td>{{ medico.sexo }}</td>
                                 <td>{{ medico.crm}}</td>
                                 <td>{{ medico.estado }}</td>
@@ -56,7 +56,7 @@ export default {
                 email: "",
                 telefone: "",
                 celular: "",
-                dtNascimento: "",
+                dt_nascimento: "",
                 sexo: "",
                 cpf: "",
                 crm: "",

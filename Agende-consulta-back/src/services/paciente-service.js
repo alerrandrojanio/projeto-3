@@ -10,14 +10,10 @@ class PacienteService {
       return pacienteRepo.findAll();
     }
     
-    
-  
     getByNome(nome) {
       return pacienteRepo.findByName(nome);
-      
     }
   
-    
     update(id, paciente) {
      return pacienteRepo.update(id, paciente);
     }

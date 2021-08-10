@@ -4,8 +4,11 @@ const pool = require("../dbs/postgres");
 
 exports.save = async (consulta) => {
     const result = await pool.query(
-      "INSERT INTO consultas(data,hora) VALUES ($1,$2) RETURNING *;",
-      [consulta.data, consulta.hora]
+      "INSERT INTO consultas(id_paciente, id_medico, data, hora) VALUES ($1, $2, $3, $4) RETURNING *;",
+          [consulta.idPaciente,
+          consulta.idMedico,
+          consulta.data, 
+          consulta.hora]
     );
     return result.rows[0];
   };
@@ -19,8 +22,12 @@ exports.save = async (consulta) => {
    
   exports.update = async (id, consulta) => {
     const result = await pool.query(
-      "UPDATE consultas SET data=$1, hora=$2  WHERE id=$3 RETURNING *;",
-      [ consulta.data, consulta.hora,id]
+      "UPDATE consultas SET id_paciente=$1, id_medico=$2, data=$3, hora=$4  WHERE id=$3 RETURNING *;",
+      [ consulta.idPaciente,
+        consulta.idMedico,
+        consulta.data, 
+        consulta.hora,
+        id]
     );
     return result.rows[0];
   };
