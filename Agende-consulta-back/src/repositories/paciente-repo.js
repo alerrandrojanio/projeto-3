@@ -25,7 +25,7 @@ exports.save = async (paciente) => {
   exports.findAll = async () =>{
     const result = await pool.query("SELECT * FROM pacientes;");
     return result.rows;
-};
+  };
    
   exports.findByName = async (nome) => {
     const result = await pool.query("SELECT * FROM pacientes WHERE nome=$1;", [

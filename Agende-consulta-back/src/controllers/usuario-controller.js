@@ -3,7 +3,9 @@ const UsuarioService = require("../services/usuario-service");
 
 var usuarioService = new UsuarioService();
 
-
+exports.get = async (req, res)=>{
+    res.json(await usuarioService.getAll());
+};
 
 exports.post = async (req, res) =>{
     res.json(await usuarioService.add(

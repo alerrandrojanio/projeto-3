@@ -16,10 +16,7 @@
                             </div>
                             <hr>
 
-                            <form @submit.prevent="prevSubmit()"
-                                action="pgInicial.html" 
-                                name="form"
-                                class="needs-validation">
+                            
                                 <!-- Login -->
                                 <div>
                                    
@@ -59,7 +56,7 @@
                                         <p class="mt-5 mb-3 text-muted text-center">AgendeConsulta &copy; 2021</p>
                                     </footer>
                                 </div>
-                            </form>
+                            
                         </div>
                     </div>
                 </div>
@@ -83,8 +80,6 @@ data() {
             baseURI:"http://localhost:3000/usuarios"    
     }
 },
-
-methods: {
     methods:{
         getAll() {
             axios.get(this.baseURI).then((result) =>{
@@ -92,13 +87,20 @@ methods: {
                 })
         },
 
-        // login(usuario) {
-            
-
-        // }
-    }
-    
-},
+        login() {
+            for(var i = 0; i < this.usuarios.length; i++){
+                if(this.usuario == this.usuarios[i].usuario){
+                    if(this.senha == this.usuarios[i].senha){
+                        this.$router.replace('pagina-inicial');
+                    } else {
+                        alert("SENHA INCORRETA!");
+                        }
+                } else{
+                    alert("USUARIO INEXISTENTE!");
+                }
+            }
+        }  
+    },
     
     created: function(){
         this.$nextTick(this.getAll)

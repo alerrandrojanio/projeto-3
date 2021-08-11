@@ -12,10 +12,10 @@ exports.save = async (usuario) => {
     return result.rows[0];
   };
    
-//   exports.findAll = async () =>{
-//     const result = await pool.query("SELECT * FROM medicos;");
-//     return result.rows;
-// };
+  exports.findAll = async () =>{
+    const result = await pool.query("SELECT * FROM usuarios;");
+    return result.rows;
+  };
    
   exports.update = async (id, usuario) => {
     const result = await pool.query(

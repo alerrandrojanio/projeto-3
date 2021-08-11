@@ -6,6 +6,10 @@ class UsuarioService {
       return usuarioRepo.save(usuario);
     }
 
+    getAll(){
+      return usuarioRepo.findAll();
+    }
+
     update(id, usuario) {
       return usuarioRepo.update(id, usuario);
     }
