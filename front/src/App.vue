@@ -6,6 +6,7 @@
 import './css/bootstrap.min.css'
 import './css/bootstrap.min.style.css'
 
+
 export default {
   
 }

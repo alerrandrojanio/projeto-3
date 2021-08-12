@@ -55,24 +55,28 @@
 
                             <div class="form-group left-inner-addon">
                                 <div class="form-row">
-                    
                                     <div class="col left-inner-addon">
-                      
-                                        <!-- <i class="fas fa-mobile"></i> -->
-                                        <input type="text" id="medico" name="medico" class="form-control"
-                                            placeholder="Digite o código do médico" v-model="medico" required>
-                                            <div class="invalid-feedback">
-                                                É obrigatório código do médico
-                                            </div>
-                                    </div>
-                                    <div class="col left-inner-addon">
-                                        <!--  <i class="fas fa-phone-alt"></i> -->
-                                        <input type="text" id="paciente" name="paciente" class="form-control"
-                                            placeholder="Digite o código do paciente" v-model="paciente">
+                                        <select class="form-control" v-model="medico">
+                                            <option value="">Selecione o Médico</option>
+                                            <option v-for="medico in medicos" :key="medico.id">
+                                                Nome: {{medico.nome}}, CRM: {{medico.crm}} {{medico.estado}}
+                                            </option>
+                                        </select>
                                         <div class="invalid-feedback">
-                                            É obrigatório código do paciente
+                                            Médico é obrigatório
                                         </div>
-
+                                    </div>
+                                    
+                                    <div class="col left-inner-addon">
+                                        <select class="form-control" v-model="paciente">
+                                            <option value="">Selecione o Paciente</option>
+                                            <option v-for="paciente in pacientes" :key="paciente.id">
+                                                Nome: {{paciente.nome}}, CPF: {{paciente.cpf}}
+                                            </option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Paciente é obrigatório
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +84,8 @@
                             <div class="form-row">
                     
                             <div class="col left-inner-addon">
-                                <input type="text" class="form-control" placeholder="Data" v-model="data" required>
+                                <!-- v-mask="'##/##/####'" -->
+                                <input type="text" class="form-control date" placeholder="Data" maxlength="10" v-model="data"  required>
                                 <div class="invalid-feedback">
                                     Data da consulta é obrigatória
                                 </div>
@@ -88,8 +93,9 @@
                             <div class="col left-inner-addon">
                       
                                 <!-- <i class="fas fa-phone-alt"></i> -->
+                                <!-- v-mask="'##:##'" -->
                                 <input type="text" id="hora" name="hora" class="form-control" placeholder="Hora da consulta"
-                                    pattern="\[0-9]{2}\[\s]-[0-9]{2}" data-mask="00:00" v-model="hora">
+                                    pattern="\[0-9]{2}\[\s]-[0-9]{2}" v-model="hora" maxlength="5" required>
                                 <div class="invalid-feedback">
                                     Hora da consulta é obrigatória
                                 </div>
@@ -140,10 +146,32 @@ export default {
         },
 
       methods: {
+        getIdMedico(){
+            var pegaCrm = this.medico.split(" ");
+            var crm = pegaCrm[4];
+            
+            for(var i = 0; i < this.medicos.length; i++){
+                if(crm == this.medicos[i].crm){
+                    return this.medicos[i].id;
+                }
+            }
+        },
+
+        getIdPaciente(){
+            var pegaCpf = this.paciente.split(" ");
+            var cpf = pegaCpf[4];
+
+            for(var i = 0; i < this.pacientes.length; i++){
+                if(cpf == this.pacientes[i].cpf){
+                    return this.pacientes[i].id;
+                }
+            }   
+        },
+
         PostConsulta(){
             let obj ={
-                paciente: this.paciente,
-                medico: this.medico,
+                paciente: this.getIdPaciente(),
+                medico: this.getIdMedico(),
                 data: this.data,
                 hora: this.hora    
             };
@@ -152,12 +180,14 @@ export default {
             axios.post(this.baseURI, obj).then((result) =>{ 
               this.consultas = result.data
             })
+
+            alert("CONSULTA MARCADA!");
         },
 
         PutConsulta(){
             let obj ={
-                paciente: this.paciente,
-                medico: this.medico,
+                paciente: this.getIdPaciente(),
+                medico: this.getIdMedico(),
                 data: this.data,
                 hora: this.hora   
             };
@@ -186,8 +216,9 @@ export default {
     },
    
     created: function(){
-        this.$nextTick(this.getMedicoPaciente)
-    }
+        this.$nextTick(this.getMedicoPaciente);
+    },
+
 }
 
 </script>

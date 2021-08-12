@@ -10,8 +10,8 @@ exports.get = async (req, res) => {
 exports.post = async (req, res) =>{
     res.json(await consultaService.add(
         new Consulta(
-            req.body.paciente,
-            req.body.medico,
+            req.body.id_paciente,
+            req.body.id_medico,
             req.body.data, 
             req.body.hora
         )));
@@ -20,8 +20,8 @@ exports.post = async (req, res) =>{
 exports.put = async (req,res) =>{
     res.json(await consultaService.update(req.params.id,
         new Consulta( 
-            req.body.paciente,
-            req.body.medico,
+            req.body.id_paciente,
+            req.body.id_medico,
             req.body.data, 
             req.body.hora
         )));

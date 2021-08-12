@@ -1,0 +1,4 @@
+No cadastro de consulta aparece o erro no back -> null value in column "nome" of relation "usuarios"
+
+
+

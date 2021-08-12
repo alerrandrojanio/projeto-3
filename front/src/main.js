@@ -1,5 +1,12 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
+//import VueMask from 'v-mask';
 
-createApp(App).use(router).mount('#app')
+
+const app = createApp(App);
+//app.use(VueMask);
+app.use(router);
+
+
+app.mount("#app");
