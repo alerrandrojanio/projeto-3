@@ -91,15 +91,26 @@ data() {
             for(var i = 0; i < this.usuarios.length; i++){
                 if(this.usuario == this.usuarios[i].usuario){
                     if(this.senha == this.usuarios[i].senha){
-                        this.$router.replace('pagina-inicial');
+                        this.$router.replace('pagina-inicial'); continue;
                     } else {
                         alert("SENHA INCORRETA!");
-                        }
-                } else{
+                    }
+                }  
+            }
+            
+            i = 0; 
+            while(i < this.usuarios.length){
+                if(this.usuario != this.usuarios[i].usuario){
+                    i++;
+                }
+                else{
+                    break;
+                }
+                if(i == this.usuarios.length){
                     alert("USUARIO INEXISTENTE!");
                 }
             }
-        }  
+        }
     },
     
     created: function(){

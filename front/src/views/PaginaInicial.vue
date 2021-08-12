@@ -87,7 +87,7 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link active" href="editarUser.html">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">João Pereira</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> {{ }} </span>
                                 <img class="img-profile rounded-circle" src="../assets/Avatar.png">
                             </a>
                         </li>
