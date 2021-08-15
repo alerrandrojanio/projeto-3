@@ -104,7 +104,7 @@
                         </div>
                   <hr>
         
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" @click="PostConsulta">Marcar</button><br/>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" @click="validaConsulta">Marcar</button><br/>
                     <button type="reset" class="btn btn-primary btn-lg btn-block" @click="this.$router.replace('pagina-inicial')">Voltar</button>
                   
 
@@ -146,6 +146,23 @@ export default {
         },
 
       methods: {
+        validaConsulta(){
+            if(this.medico == "" || this.paciente == "" || this.data == "" || this.hora == ""){
+                alert("Preencha todos os campos!");
+            }
+            else{
+                this.PostConsulta();
+            }
+
+        },
+
+        limpar(){
+          this.medico = "",
+          this.paciente = "",
+          this.data = "",
+          this.hora = ""
+        },
+
         getIdMedico(){
             var pegaCrm = this.medico.split(" ");
             var crm = pegaCrm[4];
@@ -182,6 +199,8 @@ export default {
             })
 
             alert("CONSULTA MARCADA!");
+            this.limpar();
+
         },
 
         PutConsulta(){

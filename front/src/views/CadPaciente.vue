@@ -190,6 +190,32 @@ export default {
             }
       },
       methods: {
+        cpfExiste(){
+            for(var i = 0; i < this.pacientes.length; i++){
+                if(this.cpf == this.pacientes[i].cpf)
+                  return true
+                }
+            return false  
+        },
+
+        validaPaciente(){
+            if(this.nome == "" || this.email == "" || this.telefone == "" || 
+              this.celular == "" || this.dtNascimento == "" || this.sexo == "",
+              this.cpf == "" || this.rua == "" || this.cep == "" || this.numCasa == "", 
+              this.complemento == "" || this.bairro == "" || this.cidade == ""){
+              alert("Preencha todos os campos!");
+            }
+            if(this.cpfExiste){
+              alert("CPF já cadastrado!");
+            }
+            //else if(valida.isValidCPF(this.cpf))
+
+            else{
+              this.PostPaciente();
+            }
+
+        },
+
         limpar(){
             this.nome = "",
             this.email = "",

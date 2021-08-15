@@ -14,12 +14,12 @@
                                 <td>RUA</td>
                                 <td>NÚMERO</td>
                                 <!-- <td>COMPLEMENTO</td> -->
-                                <td>CEP</td>
+                                <!-- <td>CEP</td> -->
                                 <td>BAIRRO</td>
                                 <td>CIDADE</td>
                                 <td>EMAIL</td>
-                                <td>TELEFONE</td>
-                                <td>CELULAR</td>
+                                <!-- <td>TELEFONE</td> -->
+                                <!-- <td>CELULAR</td> -->
                             </tr>
                             <!-- FALTA ALTERAR -->
                             <tr  v-for="paciente in pacientes " :key="paciente.id" >
@@ -30,12 +30,15 @@
                                 <td>{{ paciente.rua}}</td>
                                 <td>{{ paciente.num_casa }}</td>
                                 <!-- <td>{{ paciente.complemento }}</td> -->
-                                <td>{{ paciente.cep }}</td>
+                                <!-- <td>{{ paciente.cep }}</td> -->
                                 <td>{{ paciente.bairro }}</td>
                                 <td>{{ paciente.cidade }}</td>
                                 <td>{{ paciente.email }}</td>
-                                <td>{{ paciente.telefone }}</td>
-                                <td>{{ paciente.celular }}</td>
+                                <!-- <td>{{ paciente.telefone }}</td> -->
+                                <!-- <td>{{ paciente.celular }}</td> -->
+                                <td>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(paciente.id)">Editar</button>
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -80,7 +83,27 @@ export default {
         getAll() {
             axios.get(this.baseURI).then((result) =>{
                     this.pacientes = result.data
-                })
+            })
+        },
+
+        preencheCampos(id){
+            for(var i = 0; i < this.pacientes.length; i++){
+                if(id == this.pacientes[i].id){
+                    this.nome = this.pacientes[i].nome,
+                    this.email = this.pacientes[i].email,
+                    this.telefone = this.pacientes[i].telefone,
+                    this.celular = this.pacientes[i].celular,
+                    this.dt_nascimento = this.pacientes[i].dt_nascimento,
+                    this.sexo = this.pacientes[i].sexo,
+                    this.cpf = this.pacientes[i].cpf,
+                    this.rua = this.pacientes[i].rua,
+                    this.cep = this.pacientes[i].cep,
+                    this.num_casa = this.pacientes[i].num_casa,
+                    this.complemento = this.pacientes[i].complemento,
+                    this.bairro = this.pacientes[i].bairro,
+                    this.cidade = this.pacientes[i].cidade
+                }    
+            } 
         }
     },
     

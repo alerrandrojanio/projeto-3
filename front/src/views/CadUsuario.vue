@@ -84,6 +84,27 @@ export default {
             }
       },
       methods: {
+        usuarioExiste(){
+            for(var i = 0; i < this.usuarios.length; i++){
+                if(this.usuario == this.usuarios[i].usuario)
+                  return true
+                }
+            return false  
+        },
+
+        validaUsuario(){
+            if(this.nome == "" || this.usuario == "" || this.senha == ""){
+              alert("Preencha todos os campos!");
+            }
+            if(this.usuarioExiste){
+              alert("Usuario já cadastrado!");
+            }
+            else{
+              this.PostUsuario();
+            }
+
+        },
+
         limpar(){
           this.nome = "",
           this.usuario = "",
@@ -104,24 +125,6 @@ export default {
             
             alert("USUARIO CADASTRADO!");
             this.limpar();
-        },
-
-        PutUsuario(){
-            let obj ={
-              nome: this.nome,
-              usuario: this.usuario,
-              senha: this.senha 
-            };
-
-            axios.put(this.baseURI+"/" + this.id, obj).then((result) =>{
-              console.log(result)
-            })
-        },
-
-        DeleteUsuario(){
-          axios.delete(this.baseURI +"/"+this.id,).then((result) =>{
-            console.log(result)
-          })
         }
 
       },

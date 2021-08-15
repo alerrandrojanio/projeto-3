@@ -46,6 +46,11 @@ const routes = [
     path: "/marcar-consulta",
     name:"Marcar Consulta",
     component: () => import("../views/MarcarConsulta.vue")
+  },
+  {
+    path: "/lista-usuarios",
+    name:"Lista Usuários",
+    component: () => import("../views/ListaUsuarios.vue")
   }
   
 ]

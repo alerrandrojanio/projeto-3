@@ -30,6 +30,9 @@
                                 <td>{{ medico.email }}</td>
                                 <td>{{ medico.telefone }}</td>
                                 <td>{{ medico.celular }}</td>
+                                <td>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(medico.id)">Editar</button>
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -72,6 +75,23 @@ export default {
                     this.medicos = result.data
                 })
         },
+
+        preencheCampos(id){
+            for(var i = 0; i < this.medicos.length; i++){
+                if(id == this.medicos[i].id){
+                    this.nome = this.medicos[i].nome,
+                    this.email = this.medicos[i].email,
+                    this.telefone = this.medicos[i].telefone,
+                    this.celular = this.medicos[i].celular,
+                    this.dt_nascimento = this.medicos[i].dt_nascimento,
+                    this.sexo = this.medicos[i].sexo,
+                    this.cpf = this.medicos[i].cpf,
+                    this.crm = this.medicos[i].crm,
+                    this.estado = this.medicos[i].estado,
+                    this.cbos = this.medicos[i].cbos
+                }    
+            } 
+        }
 
     },
     

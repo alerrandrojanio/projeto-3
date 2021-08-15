@@ -19,7 +19,7 @@ exports.save = async (usuario) => {
    
   exports.update = async (id, usuario) => {
     const result = await pool.query(
-      "UPDATE usuarios SET nome=$1, usuario=$2, senha=$3,  WHERE id=$4 RETURNING *;",
+      "UPDATE usuarios SET nome=$1, usuario=$2, senha=$3 WHERE id=$4 RETURNING *;",
         [usuario.nome, 
         usuario.usuario, 
         usuario.senha, 
