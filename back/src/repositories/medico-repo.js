@@ -31,7 +31,7 @@ exports.save = async (medico) => {
    
   exports.update = async (id, medico) => {
     const result = await pool.query(
-      "UPDATE medicos SET nome=$1, email=$2, telefone=$3, celular=$4, dt_nascimento=$5, sexo=$6, cpf=$7, crm=$8, estado=$9, cbos=$10  WHERE id=$11 RETURNING *;",
+      "UPDATE medicos SET nome=$1, email=$2, telefone=$3, celular=$4, dt_nascimento=$5, sexo=$6, cpf=$7, crm=$8, estado=$9, cbos=$10 WHERE id=$11 RETURNING *;",
         [medico.nome, 
         medico.email,
         medico.telefone,

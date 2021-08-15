@@ -20,7 +20,7 @@ exports.save = async (consulta) => {
    
   exports.update = async (id, consulta) => {
     const result = await pool.query(
-      "UPDATE consultas SET id_paciente=$1, id_medico=$2, data=$3, hora=$4  WHERE id=$3 RETURNING *;",
+      "UPDATE consultas SET id_paciente=$1, id_medico=$2, data=$3, hora=$4 WHERE id=$3 RETURNING *;",
       [ consulta.id_paciente,
         consulta.id_medico,
         consulta.data, 

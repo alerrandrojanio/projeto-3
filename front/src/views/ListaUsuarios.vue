@@ -143,8 +143,8 @@ export default {
 
         },
         
-        DeleteUsuario(){
-          axios.delete(this.baseURI +"/"+this.id).then((result) =>{
+        DeleteUsuario(id){
+          axios.delete(this.baseURI +"/"+id).then((result) =>{
             console.log(result)
           })
           alert("Usuário deletado!");
