@@ -1,4 +1,4 @@
-const consultaRepo = require("../repositories/usuario-repo");
+const consultaRepo = require("../repositories/consulta-repo");
 class ConsultaService {
    
     
