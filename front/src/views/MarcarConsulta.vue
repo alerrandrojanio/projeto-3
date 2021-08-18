@@ -169,6 +169,7 @@ export default {
             
             for(var i = 0; i < this.medicos.length; i++){
                 if(crm == this.medicos[i].crm){
+                    alert(this.medicos[i].id)
                     return this.medicos[i].id;
                 }
             }
@@ -177,9 +178,10 @@ export default {
         getIdPaciente(){
             var pegaCpf = this.paciente.split(" ");
             var cpf = pegaCpf[4];
-
+            
             for(var i = 0; i < this.pacientes.length; i++){
                 if(cpf == this.pacientes[i].cpf){
+                    alert(this.pacientes[i].id)
                     return this.pacientes[i].id;
                 }
             }   
@@ -187,15 +189,16 @@ export default {
 
         PostConsulta(){
             let obj ={
-                paciente: this.getIdPaciente(),
-                medico: this.getIdMedico(),
+                id_paciente: this.getIdPaciente(),
+                id_medico: this.getIdMedico(),
                 data: this.data,
-                hora: this.hora    
+                hora: this.hora
+
             };
 
-            
+            console.table(obj)
             axios.post(this.baseURI, obj).then((result) =>{ 
-              this.consultas = result.data
+                this.consultas = result.data
             })
 
             alert("CONSULTA MARCADA!");
@@ -205,8 +208,8 @@ export default {
 
         PutConsulta(){
             let obj ={
-                paciente: this.getIdPaciente(),
-                medico: this.getIdMedico(),
+                id_paciente: parseInt(this.getIdPaciente()),
+                id_medico: parseInt(this.getIdMedico()),
                 data: this.data,
                 hora: this.hora   
             };
