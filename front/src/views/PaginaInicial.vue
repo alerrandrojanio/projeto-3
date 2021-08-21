@@ -94,8 +94,8 @@
                     </ul>
                 </nav>
 
-                 <!--  
-                <div class="container">
+                 
+                <div class="container"  v-for="medico in medicos " :key="medico.id" >
 
 
                  <div class="row">
@@ -106,7 +106,7 @@
                                         <div class="d-flex justify-content-between align-items-center">
 
                                             <div class="ml-2">
-                                                <div class="h4 m-0">Dr. Adalberto Canella - Pediatra</div>
+                                                <div class="h4 m-0">Dr. {{medico.nome}}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -128,7 +128,7 @@
                         
                     </div>
                 </div>
-                -->
+                
                
             </div>
              <footer class="sticky-footer bg-white shadow">
@@ -148,9 +148,21 @@ export default {
     data() {
         return {
             id: "",
-            pagina: 'http://localhost:8080/pagina-inicial'
+            pagina: 'http://localhost:8080/pagina-inicial',
+            medicos: [],
+            baseURI:"http://localhost:3000/medicos"  
         }
     },
+    methods: {
+        getAll() {
+            axios.get(this.baseURI).then((result) =>{
+                    this.medicos = result.data
+                })
+        },
+    },
+    created: function(){
+        this.$nextTick(this.getAll)
+    }
 }
 </script>
 
