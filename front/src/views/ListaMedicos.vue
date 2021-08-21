@@ -31,7 +31,10 @@
                                 <td>{{ medico.telefone }}</td>
                                 <td>{{ medico.celular }}</td>
                                 <td>
-                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(medico.id)">Editar</button>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(usuario.id)">Editar</button> 
+                                </td>
+                                <td>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteUsuario(usuario.id)">Deletar</button> 
                                 </td>
                             </tr>
                         </table>
@@ -46,6 +49,127 @@
                         </div>
             </div>
         </div>
+
+         <div class="container">
+            <h1 class="h4 text-light mb-4 align-center">Editar</h1>
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0 d-none d-lg-block bg-primary text-center">
+                    <div class="px-2 border-0 shadow-lg my-5">
+                        
+                        <div class="form-row">
+                            <div class="col left-inner-addon">
+                                <!-- v-mask="'##/##/####'" -->
+                                <input type="text" class="form-control" placeholder="Nome"
+                                    v-model="nome" required>
+                                <div class="invalid-feedback">
+                                    Nome é obrigatório
+                                </div>
+                            </div>
+                            
+                            <div class="col left-inner-addon">
+                      
+                                <input type="text" class="form-control" placeholder="Email"
+                                    v-model="email" required>
+                                <div class="invalid-feedback">
+                                    Email é obrigatório
+                                </div>
+
+                            </div>
+                            
+                            <div class="col left-inner-addon">
+                      
+                                <input type="text" class="form-control" placeholder="Telefone"
+                                    v-model="telefone" required>
+                                <div class="invalid-feedback">
+                                    Telefone é obrigatoria
+                                </div>
+
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="form-row">
+                            <div class="col left-inner-addon">
+                                <!-- v-mask="'##/##/####'" -->
+                                <input type="text" class="form-control" placeholder="Celular"
+                                    v-model="celular" required>
+                                <div class="invalid-feedback">
+                                    Celular é obrigatório
+                                </div>
+                            </div>
+                            
+                            <div class="col left-inner-addon">
+                      
+                                <input type="text" class="form-control" placeholder="Data de Nascimento"
+                                    v-model="dt_nascimento" required>
+                                <div class="invalid-feedback">
+                                    Data de Nascimento é obrigatório
+                                </div>
+
+                            </div>
+                            
+                            <div class="col left-inner-addon">
+                      
+                                <input type="text" class="form-control" placeholder="Sexo"
+                                    v-model="sexo" required>
+                                <div class="invalid-feedback">
+                                    Sexo é obrigatorio
+                                </div>
+
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="form-row">
+                            <div class="col left-inner-addon">
+                                <!-- v-mask="'##/##/####'" -->
+                                <input type="text" class="form-control" placeholder="CPF"
+                                    v-model="cpf" required>
+                                <div class="invalid-feedback">
+                                    CPF é obrigatório
+                                </div>
+                            </div>
+                            
+                            <div class="col left-inner-addon">
+                      
+                                <input type="text" class="form-control" placeholder="CRM"
+                                    v-model="crm" required>
+                                <div class="invalid-feedback">
+                                    CRM é obrigatório
+                                </div>
+
+                            </div>
+                            
+                            <div class="col left-inner-addon">
+                      
+                                <input type="text" class="form-control" placeholder="UF"
+                                    v-model="estado" required>
+                                <div class="invalid-feedback">
+                                    UF é obrigatorio
+                                </div>
+
+                            </div>
+
+                            <div class="col left-inner-addon">
+                      
+                                <input type="text" class="form-control" placeholder="CBOS"
+                                    v-model="cbos" required>
+                                <div class="invalid-feedback">
+                                    CBOS é obrigatorio
+                                </div>
+
+                            </div>
+                        </div>
+
+                        
+
+                    </div>
+                    
+                    <div class="mb-4 justify-content-md-center col-md-auto w-25 centraliza">
+                        <button type="reset" class="btn btn-light btn-lg btn-block" @click="PutMedico(this.id)">Atualizar</button>   
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -55,6 +179,7 @@ import axios from "axios";
 export default {
       data() {
             return {
+                id: "",
                 nome: "",
                 email: "",
                 telefone: "",
@@ -91,6 +216,50 @@ export default {
                     this.cbos = this.medicos[i].cbos
                 }    
             } 
+        },
+
+        limpar(){
+            this.nome = "",
+            this.email = "",
+            this.telefone = "",
+            this.celular = "",
+            this.dtNascimento = "",
+            this.sexo = "",
+            this.cpf = "",
+            this.crm = "",
+            this.estado = "",
+            this.cbos = "" 
+        },
+
+        PutMedico(){
+            let obj ={
+              nome: this.nome,
+                email: this.email,
+                telefone: this.telefone,
+                celular: this.celular,
+                dtNascimento: this.dtNascimento,
+                sexo: this.sexo,
+                cpf: this.cpf,
+                crm: this.crm,
+                estado: this.estado,
+                cbos: this.cbos 
+            };
+
+            axios.put(this.baseURI+"/" + this.id, obj).then((result) =>{
+              console.log(result)
+            })
+
+            alert("Médico atualizado!");
+            window.location.reload()
+
+        },
+        
+        DeleteMedico(id){
+          axios.delete(this.baseURI +"/"+id).then((result) =>{
+            console.log(result)
+          })
+          alert("Médico deletado!");
+          window.location.reload()
         }
 
     },
