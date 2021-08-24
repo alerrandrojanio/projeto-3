@@ -127,14 +127,14 @@ export default {
             this.senha = ""
         },
 
-        PutUsuario(){
+        PutUsuario(id){
             let obj ={
               nome: this.nome,
               usuario: this.usuario,
               senha: this.senha 
             };
 
-            axios.put(this.baseURI+"/" + this.id, obj).then((result) =>{
+            axios.put(this.baseURI+"/" + id, obj).then((result) =>{
               console.log(result)
             })
 

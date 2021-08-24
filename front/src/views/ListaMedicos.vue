@@ -31,10 +31,8 @@
                                 <td>{{ medico.telefone }}</td>
                                 <td>{{ medico.celular }}</td>
                                 <td>
-                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(usuario.id)">Editar</button> 
-                                </td>
-                                <td>
-                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteUsuario(usuario.id)">Deletar</button> 
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(medico.id)">Editar</button>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteUsuario(medico.id)">Deletar</button>
                                 </td>
                             </tr>
                         </table>
@@ -164,7 +162,7 @@
                     </div>
                     
                     <div class="mb-4 justify-content-md-center col-md-auto w-25 centraliza">
-                        <button type="reset" class="btn btn-light btn-lg btn-block" @click="PutMedico(this.id)">Atualizar</button>   
+                        <button type="reset" class="btn btn-light btn-lg btn-block" @click="PutMedico">Atualizar</button>   
                     </div>
                 </div>
             </div>
@@ -204,6 +202,7 @@ export default {
         preencheCampos(id){
             for(var i = 0; i < this.medicos.length; i++){
                 if(id == this.medicos[i].id){
+                    this.id = this.medicos[i].id,
                     this.nome = this.medicos[i].nome,
                     this.email = this.medicos[i].email,
                     this.telefone = this.medicos[i].telefone,
@@ -219,11 +218,12 @@ export default {
         },
 
         limpar(){
+            this.id = "",
             this.nome = "",
             this.email = "",
             this.telefone = "",
             this.celular = "",
-            this.dtNascimento = "",
+            this.dt_nascimento = "",
             this.sexo = "",
             this.cpf = "",
             this.crm = "",
@@ -233,11 +233,11 @@ export default {
 
         PutMedico(){
             let obj ={
-              nome: this.nome,
+                nome: this.nome,
                 email: this.email,
                 telefone: this.telefone,
                 celular: this.celular,
-                dtNascimento: this.dtNascimento,
+                dt_nascimento: this.dt_nascimento,
                 sexo: this.sexo,
                 cpf: this.cpf,
                 crm: this.crm,
@@ -245,7 +245,7 @@ export default {
                 cbos: this.cbos 
             };
 
-            axios.put(this.baseURI+"/" + this.id, obj).then((result) =>{
+            axios.put(this.baseURI+ "/" + this.id, obj).then((result) =>{
               console.log(result)
             })
 

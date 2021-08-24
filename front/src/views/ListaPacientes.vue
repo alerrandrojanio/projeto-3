@@ -38,6 +38,7 @@
                                 <!-- <td>{{ paciente.celular }}</td> -->
                                 <td>
                                     <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(paciente.id)">Editar</button>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="deletePaciente(paciente.id)">Deletar</button>
                                 </td>
                             </tr>
                         </table>
@@ -53,6 +54,156 @@
                         </div>
             </div>
         </div>
+
+        <div class="container">
+            <h1 class="h4 text-light mb-4 align-center">Editar</h1>
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0 d-none d-lg-block bg-primary text-center">
+                    <div class="px-2 border-0 shadow-lg my-5">
+                        
+                        <div class="form-row">
+                            <div class="col left-inner-addon">
+                                <!-- v-mask="'##/##/####'" -->
+                                <input type="text" class="form-control" placeholder="Nome"
+                                    v-model="nome" required>
+                                <div class="invalid-feedback">
+                                    Nome é obrigatório
+                                </div>
+                            </div>
+                            
+                            <div class="col left-inner-addon">
+                      
+                                <input type="text" class="form-control" placeholder="Email"
+                                    v-model="email" required>
+                                <div class="invalid-feedback">
+                                    Email é obrigatório
+                                </div>
+
+                            </div>
+                            
+                            <div class="col left-inner-addon">
+                      
+                                <input type="text" class="form-control" placeholder="Telefone"
+                                    v-model="telefone" required>
+                                <div class="invalid-feedback">
+                                    Telefone é obrigatoria
+                                </div>
+
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="form-row">
+                            <div class="col left-inner-addon">
+                                <!-- v-mask="'##/##/####'" -->
+                                <input type="text" class="form-control" placeholder="Celular"
+                                    v-model="celular" required>
+                                <div class="invalid-feedback">
+                                    Celular é obrigatório
+                                </div>
+                            </div>
+                            
+                            <div class="col left-inner-addon">
+                      
+                                <input type="text" class="form-control" placeholder="Data de Nascimento"
+                                    v-model="dt_nascimento" required>
+                                <div class="invalid-feedback">
+                                    Data de Nascimento é obrigatório
+                                </div>
+
+                            </div>
+                            
+                            <div class="col left-inner-addon">
+                      
+                                <input type="text" class="form-control" placeholder="Sexo"
+                                    v-model="sexo" required>
+                                <div class="invalid-feedback">
+                                    Sexo é obrigatorio
+                                </div>
+
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="form-row">
+                            <div class="col left-inner-addon">
+                                <!-- v-mask="'##/##/####'" -->
+                                <input type="text" class="form-control" placeholder="CPF"
+                                    v-model="cpf" required>
+                                <div class="invalid-feedback">
+                                    CPF é obrigatório
+                                </div>
+                            </div>
+                            
+                            <div class="col left-inner-addon">
+                      
+                                <input type="text" class="form-control" placeholder="Rua"
+                                    v-model="rua" required>
+                                <div class="invalid-feedback">
+                                    Rua é obrigatório
+                                </div>
+
+                            </div>
+                            
+                            <div class="col left-inner-addon">
+                      
+                                <input type="text" class="form-control" placeholder="Número"
+                                    v-model="num_casa" required>
+                                <div class="invalid-feedback">
+                                    Número é obrigatorio
+                                </div>
+
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="form-row">
+                            <div class="col left-inner-addon">
+                      
+                                <input type="text" class="form-control" placeholder="CEP"
+                                    v-model="cep" required>
+                                <div class="invalid-feedback">
+                                    CEP é obrigatorio
+                                </div>
+
+                            </div>
+                            <div class="col left-inner-addon">
+                      
+                                <input type="text" class="form-control" placeholder="Complemento"
+                                    v-model="complemento" required>
+                                <div class="invalid-feedback">
+                                    Complemento é obrigatorio
+                                </div>
+
+                            </div>
+                            <div class="col left-inner-addon">
+                      
+                                <input type="text" class="form-control" placeholder="Bairro"
+                                    v-model="bairro" required>
+                                <div class="invalid-feedback">
+                                    Bairro é obrigatorio
+                                </div>
+
+                            </div>
+                            <div class="col left-inner-addon">
+                      
+                                <input type="text" class="form-control" placeholder="Cidade"
+                                    v-model="cidade" required>
+                                <div class="invalid-feedback">
+                                    Cidade é obrigatoria
+                                </div>
+
+                            </div>
+                            </div>
+
+                        
+
+                    </div>
+                    
+                    <div class="mb-4 justify-content-md-center col-md-auto w-25 centraliza">
+                        <button type="reset" class="btn btn-light btn-lg btn-block" @click="putPaciente(this.id)">Atualizar</button>   
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -62,6 +213,7 @@ import axios from "axios";
 export default {
       data() {
             return {
+                id: "",
                 nome: "",
                 email: "",
                 telefone: "",
@@ -86,9 +238,27 @@ export default {
             })
         },
 
+        limpar(){
+            this.id = "",
+            this.nome = "",
+            this.email = "",
+            this.telefone = "",
+            this.celular = "",
+            this.dt_nascimento = "",
+            this.sexo = "",
+            this.cpf = "",
+            this.rua = "",
+            this.cep = "",
+            this.num_casa = "",
+            this.complemento = "",
+            this.bairro = "",
+            this.cidade = ""
+        },
+
         preencheCampos(id){
             for(var i = 0; i < this.pacientes.length; i++){
                 if(id == this.pacientes[i].id){
+                    this.id = this.pacientes[i].id,
                     this.nome = this.pacientes[i].nome,
                     this.email = this.pacientes[i].email,
                     this.telefone = this.pacientes[i].telefone,
@@ -104,6 +274,41 @@ export default {
                     this.cidade = this.pacientes[i].cidade
                 }    
             } 
+        },
+
+        putPaciente(id){
+            let obj ={
+              nome: this.nome,
+              email: this.email,
+              telefone: this.telefone,
+              celular: this.celular,
+              dt_nascimento: this.dt_nascimento,
+              sexo: this.sexo,
+              cpf: this.cpf,
+              rua: this.rua,
+              cep: this.cep,
+              numCasa: this.numCasa,
+              complemento: this.complemento,
+              bairro: this.bairro,
+              cidade: this.cidade
+
+            };
+          
+            axios.put(this.baseURI+"/" + id, obj).then((result) =>{
+              console.log(result)
+            })
+
+            alert("Paciente atualizado!");
+            window.location.reload()
+        },
+
+        deletePaciente(id){
+           axios.delete(this.baseURI +"/"+ id,).then((result) =>{
+             console.log(result)
+           })
+
+            alert("Paciente deletado!");
+            window.location.reload()
         }
     },
     

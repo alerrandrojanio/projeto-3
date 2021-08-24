@@ -1,10 +1,10 @@
 class Medico{
-    constructor(nome, email, telefone, celular, dtNascimento, sexo, cpf, crm, estado, cbos){
+    constructor(nome, email, telefone, celular, dt_nascimento, sexo, cpf, crm, estado, cbos){
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.celular = celular;
-        this.dtNascimento = dtNascimento;
+        this.dt_nascimento = dt_nascimento;
         this.sexo = sexo;
         this.cpf = cpf;
         this.crm = crm;

@@ -150,7 +150,7 @@
                     </div>
                   </div>
                   <hr>
-                  <button type="submit" class="btn btn-primary btn-lg btn-block" @click="PostPaciente">Cadastar</button><br/>
+                  <button type="submit" class="btn btn-primary btn-lg btn-block" @click="postPaciente">Cadastar</button><br/>
                   <button type="reset" class="btn btn-primary btn-lg btn-block" @click="this.$router.replace('pagina-inicial')">Voltar</button>
                   
                   
@@ -231,8 +231,7 @@ export default {
             this.bairro = "",
             this.cidade = ""
         },
-
-        PostPaciente(){
+        postPaciente(){
             let obj ={
               nome: this.nome,
               email: this.email,
@@ -254,38 +253,9 @@ export default {
             })
             alert("PACIENTE CADASTRADO!");
             this.limpar();
-        },
-
-        PutPaciente(){
-            let obj ={
-              nome: this.nome,
-              email: this.email,
-              telefone: this.telefone,
-              celular: this.celular,
-              dtNascimento: this.dtNascimento,
-              sexo: this.sexo,
-              cpf: this.cpf,
-              rua: this.rua,
-              cep: this.cep,
-              numCasa: this.numCasa,
-              complemento: this.complemento,
-              bairro: this.bairro,
-              cidade: this.cidade
-
-            };
-
-          
-            axios.put(this.baseURI+"/" + this.id, obj).then((result) =>{
-              console.log(result)
-            })
-        },
-
-        DeletePaciente(){
-           axios.delete(this.baseURI +"/"+this.id,).then((result) =>{
-             console.log(result)
-           })
         }
-      },
+
+      }
 }
 </script>
 
