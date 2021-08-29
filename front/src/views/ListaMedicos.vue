@@ -24,15 +24,15 @@
                                 <td>{{ medico.cpf }}</td>
                                 <td>{{ medico.dt_nascimento }}</td>
                                 <td>{{ medico.sexo }}</td>
-                                <td>{{ medico.crm}}</td>
+                                <!-- <td>{{ medico.crm}}</td>
                                 <td>{{ medico.estado }}</td>
                                 <td>{{ medico.cbos }}</td>
                                 <td>{{ medico.email }}</td>
                                 <td>{{ medico.telefone }}</td>
-                                <td>{{ medico.celular }}</td>
+                                <td>{{ medico.celular }}</td> -->
                                 <td>
                                     <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(medico.id)">Editar</button>
-                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteUsuario(medico.id)">Deletar</button>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteMedico(medico.id)">Deletar</button>
                                 </td>
                             </tr>
                         </table>
@@ -162,7 +162,7 @@
                     </div>
                     
                     <div class="mb-4 justify-content-md-center col-md-auto w-25 centraliza">
-                        <button type="reset" class="btn btn-light btn-lg btn-block" @click="PutMedico">Atualizar</button>   
+                        <button type="reset" class="btn btn-light btn-lg btn-block" @click="PutMedico(this.id)">Atualizar</button>   
                     </div>
                 </div>
             </div>
@@ -231,7 +231,7 @@ export default {
             this.cbos = "" 
         },
 
-        PutMedico(){
+        PutMedico(id){
             let obj ={
                 nome: this.nome,
                 email: this.email,
@@ -245,7 +245,7 @@ export default {
                 cbos: this.cbos 
             };
 
-            axios.put(this.baseURI+ "/" + this.id, obj).then((result) =>{
+            axios.put(this.baseURI+ "/" + id, obj).then((result) =>{
               console.log(result)
             })
 

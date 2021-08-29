@@ -75,7 +75,7 @@
                     <!-- Data e Sexo -->
                     <div class="col">
                       <!-- Data -->
-                      <input type="text" class="form-control" placeholder="Data de nascimento" v-model="dtNascimento" required>
+                      <input type="text" class="form-control" placeholder="Data de nascimento" v-model="dt_nascimento" required>
                       <div class="invalid-feedback">
                         Data de nascimento é obrigatória.
                       </div>
@@ -150,7 +150,7 @@ export default {
                 email: "",
                 telefone: "",
                 celular: "",
-                dtNascimento: "",
+                dt_nascimento: "",
                 sexo: "",
                 cpf: "",
                 crm: "",
@@ -166,7 +166,7 @@ export default {
             this.email = "",
             this.telefone = "",
             this.celular = "",
-            this.dtNascimento = "",
+            this.dt_nascimento = "",
             this.sexo = "",
             this.cpf = "",
             this.crm = "",
@@ -180,7 +180,7 @@ export default {
                 email: this.email,
                 telefone: this.telefone,
                 celular: this.celular,
-                dtNascimento: this.dtNascimento,
+                dt_nascimento: this.dt_nascimento,
                 sexo: this.sexo,
                 cpf: this.cpf,
                 crm: this.crm,
@@ -201,7 +201,7 @@ export default {
                 email: this.email,
                 telefone: this.telefone,
                 celular: this.celular,
-                dtNascimento: this.dtNascimento,
+                dt_nascimento: this.dt_nascimento,
                 sexo: this.sexo,
                 cpf: this.cpf,
                 crm: this.crm,

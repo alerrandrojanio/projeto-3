@@ -62,11 +62,10 @@ exports.put = async (req,res) =>{
         req.body.cep == null ||
         req.body.num_casa == null ||
         req.body.bairro == null ||
-        req.body.cidade == null
-        ){
+        req.body.cidade == null){
             res.status(400).send();
         }else{
-            let paci =await pacienteService.update(
+            let paci =await pacienteService.update(req.params.id,
                 new Paciente(
                     req.body.nome,
                     req.body.email,
@@ -90,6 +89,8 @@ exports.put = async (req,res) =>{
             }   
         }
 };
+
+
 
 exports.delete = (req,res) =>{
     res.json(pacienteService.delete(req.params.id));

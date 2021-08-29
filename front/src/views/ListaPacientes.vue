@@ -198,7 +198,7 @@
                     </div>
                     
                     <div class="mb-4 justify-content-md-center col-md-auto w-25 centraliza">
-                        <button type="reset" class="btn btn-light btn-lg btn-block" @click="putPaciente(this.id)">Atualizar</button>   
+                        <button type="reset" class="btn btn-light btn-lg btn-block" @click="PutPaciente(this.id)">Atualizar</button>   
                     </div>
                 </div>
             </div>
@@ -276,7 +276,7 @@ export default {
             } 
         },
 
-        putPaciente(id){
+        PutPaciente(id){
             let obj ={
               nome: this.nome,
               email: this.email,
@@ -287,7 +287,7 @@ export default {
               cpf: this.cpf,
               rua: this.rua,
               cep: this.cep,
-              numCasa: this.numCasa,
+              num_casa: this.num_casa,
               complemento: this.complemento,
               bairro: this.bairro,
               cidade: this.cidade

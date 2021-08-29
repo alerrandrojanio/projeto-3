@@ -34,7 +34,7 @@ exports.put = async (req,res) =>{
         req.body.senha == null){
             res.status(400).send();
         }else{
-            let user = await usuarioService.update(
+            let user = await usuarioService.update( req.params.id,
                 new Usuario(
                     req.body.nome, 
                     req.body.usuario,
@@ -48,6 +48,8 @@ exports.put = async (req,res) =>{
             }
         }
 };
+
+
 
 exports.delete = (req,res) =>{
     res.json(usuarioService.delete(req.params.id));
