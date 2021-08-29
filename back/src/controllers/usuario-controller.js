@@ -8,21 +8,45 @@ exports.get = async (req, res)=>{
 };
 
 exports.post = async (req, res) =>{
-    res.json(await usuarioService.add(
-        new Usuario(
-            req.body.nome, 
-            req.body.usuario,
-            req.body.senha
-        )));
+    if(req.body.nome == null||
+        req.body.usuario == null||
+        req.body.senha == null){
+            res.status(400).send();
+        }else{
+            let user = await usuarioService.add(
+                new Usuario(
+                    req.body.nome, 
+                    req.body.usuario,
+                    req.body.senha)
+            );
+
+            if(user != null){
+                res.status(201).json(user);
+            }else{
+                res.status(409).send();
+            }
+        }
 };
 
 exports.put = async (req,res) =>{
-    res.json(await usuarioService.update(req.params.id,
-        new Usuario( 
-            req.body.nome, 
-            req.body.usuario,
-            req.body.senha
-        )));
+    if(req.body.nome == null||
+        req.body.usuario == null||
+        req.body.senha == null){
+            res.status(400).send();
+        }else{
+            let user = await usuarioService.update(
+                new Usuario(
+                    req.body.nome, 
+                    req.body.usuario,
+                    req.body.senha)
+            );
+
+            if(user != null){
+                res.status(201).json(user);
+            }else{
+                res.status(409).send();
+            }
+        }
 };
 
 exports.delete = (req,res) =>{
