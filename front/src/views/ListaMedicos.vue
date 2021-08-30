@@ -5,6 +5,34 @@
             <div class="card-body p-0 d-none d-lg-block bg-primary text-center">
                 <div class="px-2 border-0 shadow-lg my-5 ">
                         <h1 class="h4 text-light mb-4 align-center">Lista de Médicos</h1>
+                        
+                        <div class="form-row">
+                        <div class="col barra-pesquisa">
+                            <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Pesquisar por nome" aria-label="Search" aria-describedby="basic-addon2" v-model="campo_nome">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button">
+                                     <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col barra-pesquisa2">
+                            <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Quantidade" aria-label="Search" aria-describedby="basic-addon2" v-model="campo_quantidade">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button">
+                                     <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                        <br/>
+                        <br/>
+                        <br/>
                         <table class="table table-striped table-light rounded">
                             <tr>
                                 <td>NOME</td>
@@ -177,6 +205,8 @@ import axios from "axios";
 export default {
       data() {
             return {
+                campo_nome: "",
+                campo_quantidade: "",
                 id: "",
                 nome: "",
                 email: "",
@@ -330,6 +360,18 @@ export default {
 .centraliza {
     width: 555px;
     margin: auto;
+}
+
+.barra-pesquisa{
+    width: 300px;
+    position: absolute;
+    right: 20px;
+}
+
+.barra-pesquisa2{
+    width: 200px;
+    position: absolute;
+    right: 320px;
 }
 
 </style>
