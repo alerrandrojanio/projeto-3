@@ -15,6 +15,10 @@ class MedicoService {
       
     }
 
+    getQtd(qtd){
+      return medicoRepo.getByQty(qtd)
+    }
+
     update(id, medico) {
       return medicoRepo.update(id,medico);
     }

@@ -16,6 +16,18 @@ exports.save = async (usuario) => {
     const result = await pool.query("SELECT * FROM usuarios;");
     return result.rows;
   };
+
+  exports.findByName = async (nome) => {
+    const result = await pool.query("SELECT * FROM usuarios WHERE nome=$1;", [
+      nome,
+    ]);
+    return result.rows;
+  };
+  
+  exports.getQtd = async (qtd) => {
+    const result = await pool.query("SELECT * FROM usuarios LIMIT $1;",[qtd]);
+    return result.rows;
+  };
    
   exports.update = async (id, usuario) => {
     const result = await pool.query(

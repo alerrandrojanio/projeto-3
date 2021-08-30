@@ -13,6 +13,10 @@ class PacienteService {
     getByNome(nome) {
       return pacienteRepo.findByName(nome);
     }
+
+    getQtd(qtd){
+      return pacienteRepo.getByQty(qtd)
+    }
   
     update(id, paciente) {
      return pacienteRepo.update(id, paciente);

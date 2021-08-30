@@ -5,6 +5,7 @@ const controller = require("../controllers/paciente-controller");
 
 router.get("/", controller.get);
 router.get("/search", controller.getByNome);
+router.get("/procu", controller.getQtd);
 router.post("/", controller.post);
 router.put("/:id", controller.put);
 router.delete("/:id", controller.delete)
