@@ -125,7 +125,7 @@
                     <input type="text" class="form-control" placeholder="Digite o CBOS" v-model="cbos">
                   </div>
                   <hr>
-                  <button type="submit" class="btn btn-primary btn-lg btn-block" @click="PostMedico">Cadastar</button> <br/>
+                  <button type="submit" class="btn btn-primary btn-lg btn-block" @click="validaMedico">Cadastar</button> <br/>
                   <button type="reset" class="btn btn-primary btn-lg btn-block" @click="this.$router.replace('pagina-inicial')">Voltar</button>
                 
 
@@ -174,50 +174,75 @@ export default {
             this.cbos = "" 
         },
 
+        crmExiste(){
+            for(var i = 0; i < this.medicos.length; i++){
+                if(this.crm == this.medicos[i].crm){
+                    if(this.id == this.medicos[i].id){ // verifica se o medico que acho o crm igual é o proprio medico
+                        return false
+                    }
+                    else{
+                        return true 
+                    }
+                }
+            }
+            return false
+        },
+
+        cpfExiste(){
+            for(var i = 0; i < this.medicos.length; i++){
+                if(this.cpf == this.medicos[i].cpf){
+                    if(this.id == this.medicos[i].id){ 
+                        return false
+                    }
+                    else{
+                        return true 
+                    }
+                }
+            }
+            return false
+        },
+
+        validaMedico(){
+            if(this.nome == "" || this.email == "" || this.telefone == "" || 
+                this.celular == "" || this.dt_nascimento == "" || this.sexo == "",
+                this.cpf == "" || this.crm == "" || this.estado == "" || this.cbos == ""){
+                    alert("Preencha todos os campos!");
+                }
+            else{
+              if(this.crmExiste()){
+                alert("CRM já cadastrado!");
+              }
+              else if(this.cpfExiste()){
+                alert("CPF já cadastrado!");
+              }
+              else{
+                this.PostMedico();
+              }
+            }
+        },
+
         PostMedico(){
             let obj ={
-                nome: this.nome,
-                email: this.email,
-                telefone: this.telefone,
-                celular: this.celular,
-                dt_nascimento: this.dt_nascimento,
-                sexo: this.sexo,
-                cpf: this.cpf,
-                crm: this.crm,
-                estado: this.estado,
-                cbos: this.cbos  
-            };
-            
-            axios.post(this.baseURI, obj).then((result) =>{ 
-                this.medicos = result.data
-            })
-            alert("MEDICO CADASTRADO!");
-            this.limpar();
-        },
+              nome: this.nome,
+              email: this.email,
+              telefone: this.telefone,
+              celular: this.celular,
+              dt_nascimento: this.dt_nascimento,
+              sexo: this.sexo,
+              cpf: this.cpf,
+              crm: this.crm,
+              estado: this.estado,
+              cbos: this.cbos  
+            }
 
-        PutMedico(){
-            let obj ={
-                nome: this.nome,
-                email: this.email,
-                telefone: this.telefone,
-                celular: this.celular,
-                dt_nascimento: this.dt_nascimento,
-                sexo: this.sexo,
-                cpf: this.cpf,
-                crm: this.crm,
-                estado: this.estado,
-                cbos: this.cbos  
-            };
-
-            axios.put(this.baseURI+"/" + this.id, obj).then((result) =>{
-              console.log(result)
-            })
-        },
-
-        DeleteMedico(){
-          axios.delete(this.baseURI +"/"+this.id,).then((result) =>{
-            console.log(result)
-          })
+            if(axios.post(this.baseURI, obj).then((result) =>{ 
+            this.medicos = result.data})){
+              alert("MEDICO CADASTRADO!");
+              this.limpar();
+            }
+            else{
+              alert("Erro ao cadastrar!")
+            }  
         }
       },
 

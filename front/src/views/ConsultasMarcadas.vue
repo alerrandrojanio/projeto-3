@@ -15,10 +15,17 @@
                                 <td>HORÁRIO</td>
                             </tr>
                             <!-- FALTA ALTERAR -->
-                            <tr  v-for="consulta in consultas " :key="consulta.id" >
-                                <td></td>
-                                <td>{{ consulta.paciente}}</td>
-                                <td>{{ consulta.medico }}</td>
+                            <tr v-for="consulta in consultas" :key="consulta.id" >
+                                <div v-for="paciente in pacientes" :key="paciente.id">
+                                    <div v-if="paciente.id == consulta.id_paciente">
+                                        <td>{{ paciente.nome }}</td>
+                                    </div>
+                                </div>
+                                <div v-for="medico in medicos" :key="medico.id">
+                                    <div v-if="medico.id == consulta.id_medico">
+                                         <td>{{ medico.nome }}</td>
+                                    </div>
+                                </div>
                                 <td>{{ consulta.data }}</td>
                                 <td>{{ consulta.horario }}</td>
                             </tr>
@@ -48,12 +55,16 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            paciente: "",
-            medico: "",
+            id_paciente: "",
+            id_medico: "",
             data: "",
             horario: "",
             consultas: [],
-            baseURI:"http://localhost:3000/consultas"
+            medicos: [],
+            pacientes: [],
+            baseURI:"http://localhost:3000/consultas",
+            baseURIMedicos:"http://localhost:3000/medicos",
+            baseURIPacientes:"http://localhost:3000/pacientes"    
         }
     },
 
@@ -61,6 +72,12 @@ export default {
         getAll() {
             axios.get(this.baseURI).then((result) =>{
                     this.consultas = result.data
+                })
+            axios.get(this.baseURIMedicos).then((result) =>{
+                    this.medicos = result.data
+                })
+            axios.get(this.baseURIPacientes).then((result) =>{
+                    this.pacientes = result.data
                 })
         }
     },

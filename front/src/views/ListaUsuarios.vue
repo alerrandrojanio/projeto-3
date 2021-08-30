@@ -21,7 +21,7 @@
                                     <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(usuario.id)">Editar</button> 
                                 </td>
                                 <td>
-                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteUsuario(usuario.id)">Deletar</button> 
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="deleteUsuario(usuario.id)">Deletar</button> 
                                 </td>
                             </tr>
                         </table>
@@ -76,7 +76,7 @@
                     </div>
                     
                     <div class="mb-4 justify-content-md-center col-md-auto w-25 centraliza">
-                        <button type="reset" class="btn btn-light btn-lg btn-block" @click="PutUsuario(this.id)">Atualizar</button>   
+                        <button type="reset" class="btn btn-light btn-lg btn-block" @click="validaUsuario(this.id)">Atualizar</button>   
                     </div>
                 </div>
             </div>
@@ -109,6 +109,20 @@ export default {
             })
         },
 
+        usuarioExiste(){
+            for(var i = 0; i < this.usuarios.length; i++){
+                if(this.usuario == this.usuarios[i].usuario){
+                    if(this.id == this.usuarios[i].id){ // verifica se o paciente que achou o crm igual é o proprio paciente
+                        return false
+                    }
+                    else{
+                        return true 
+                    }
+                }
+            }
+            return false
+        },
+
         preencheCampos(id){
             for(var i = 0; i < this.usuarios.length; i++){
                 if(id == this.usuarios[i].id){
@@ -127,28 +141,53 @@ export default {
             this.senha = ""
         },
 
-        PutUsuario(id){
-            let obj ={
-              nome: this.nome,
-              usuario: this.usuario,
-              senha: this.senha 
-            };
+        validaUsuario(id){
+            if(this.id == ""){
+                alert("Usuário não selecionado!")
+            }
+            else{
+                if(this.nome == "" || this.usuario == "" || this.senha == ""){
+                    alert("Preencha todos os campos!");
+                }
+                else{
+                    if(this.usuarioExiste()){
+                        alert("Usuario já cadastrado!");
+                    }
+                    else{
+                        this.PutUsuario(id);
+                    }
+                }
 
-            axios.put(this.baseURI+"/" + id, obj).then((result) =>{
-              console.log(result)
-            })
-
-            alert("Usuário atualizado!");
-            window.location.reload()
-
+            }
         },
         
-        DeleteUsuario(id){
-          axios.delete(this.baseURI +"/"+id).then((result) =>{
-            console.log(result)
-          })
-          alert("Usuário deletado!");
-          window.location.reload()
+        PutUsuario(id){
+           let obj = {
+                nome: this.nome,
+                usuario: this.usuario,
+                senha: this.senha
+            };
+          
+            if(axios.put(this.baseURI+"/" + id, obj).then((result) =>{
+            console.log(result)})){
+                alert("Usuário atualizado!");
+                window.location.reload()
+            }
+            else{
+                alert("Erro ao atualizar!")
+            }
+        },
+
+
+        deleteUsuario(id){
+            if(axios.delete(this.baseURI +"/"+ id,).then((result) =>{
+             console.log(result)})){
+                alert("Usuário deletado!");
+                window.location.reload()
+            }
+            else{
+                alert("Erro ao deletar!")
+            } 
         }
     },
     

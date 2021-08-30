@@ -13,6 +13,7 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
+
                 <router-link to="cadastro-paciente" class="nav-link">
                     <i class="fas fa-edit"></i><span>Cadastrar Paciente</span>
                 </router-link>

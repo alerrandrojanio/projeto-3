@@ -150,7 +150,7 @@
                     </div>
                   </div>
                   <hr>
-                  <button type="submit" class="btn btn-primary btn-lg btn-block" @click="postPaciente">Cadastar</button><br/>
+                  <button type="submit" class="btn btn-primary btn-lg btn-block" @click="validaPaciente">Cadastar</button><br/>
                   <button type="reset" class="btn btn-primary btn-lg btn-block" @click="this.$router.replace('pagina-inicial')">Voltar</button>
                   
                   
@@ -192,28 +192,34 @@ export default {
       methods: {
         cpfExiste(){
             for(var i = 0; i < this.pacientes.length; i++){
-                if(this.cpf == this.pacientes[i].cpf)
-                  return true
+                if(this.crm == this.pacientes[i].cpf){
+                    if(this.id == this.pacientes[i].id){ // verifica se o paciente que achou o crm igual é o proprio paciente
+                        return false
+                    }
+                    else{
+                        return true 
+                    }
                 }
-            return false  
+            }
+            return false
         },
 
+
         validaPaciente(){
-            if(this.nome == "" || this.email == "" || this.telefone == "" || 
-              this.celular == "" || this.dtNascimento == "" || this.sexo == "",
-              this.cpf == "" || this.rua == "" || this.cep == "" || this.numCasa == "", 
-              this.complemento == "" || this.bairro == "" || this.cidade == ""){
+          if(this.nome == "" || this.email == "" || this.telefone == "" || 
+            this.celular == "" || this.dtNascimento == "" || this.sexo == "",
+            this.cpf == "" || this.rua == "" || this.cep == "" || this.numCasa == "", 
+            this.complemento == "" || this.bairro == "" || this.cidade == ""){
               alert("Preencha todos os campos!");
             }
-            if(this.cpfExiste){
-              alert("CPF já cadastrado!");
-            }
-            //else if(valida.isValidCPF(this.cpf))
-
             else{
-              this.PostPaciente();
-            }
-
+              if(this.cpfExiste){
+                alert("CPF já cadastrado!");
+              }
+              else{
+                this.PostPaciente();
+              }
+          }
         },
 
         limpar(){
@@ -231,6 +237,7 @@ export default {
             this.bairro = "",
             this.cidade = ""
         },
+
         postPaciente(){
             let obj ={
               nome: this.nome,
@@ -246,16 +253,19 @@ export default {
               complemento: this.complemento,
               bairro: this.bairro,
               cidade: this.cidade  
-            };
+            }
 
-            axios.post(this.baseURI, obj).then((result) =>{ 
-              this.pacientes = result.data
-            })
-            alert("PACIENTE CADASTRADO!");
-            this.limpar();
-        }
+            if(axios.post(this.baseURI, obj).then((result) =>{ 
+            this.pacientes = result.data})){
+              alert("PACIENTE CADASTRADO!");
+              this.limpar();
+            }
+            else{
+              alert("Erro ao cadastrar!")
+            }
 
       }
+    }
 }
 </script>
 

@@ -198,7 +198,7 @@
                     </div>
                     
                     <div class="mb-4 justify-content-md-center col-md-auto w-25 centraliza">
-                        <button type="reset" class="btn btn-light btn-lg btn-block" @click="PutPaciente(this.id)">Atualizar</button>   
+                        <button type="reset" class="btn btn-light btn-lg btn-block" @click="validaPaciente(this.id)">Atualizar</button>   
                     </div>
                 </div>
             </div>
@@ -236,6 +236,20 @@ export default {
             axios.get(this.baseURI).then((result) =>{
                     this.pacientes = result.data
             })
+        },
+
+        cpfExiste(){
+            for(var i = 0; i < this.pacientes.length; i++){
+                if(this.crm == this.pacientes[i].cpf){
+                    if(this.id == this.pacientes[i].id){ // verifica se o paciente que achou o crm igual é o proprio paciente
+                        return false
+                    }
+                    else{
+                        return true 
+                    }
+                }
+            }
+            return false
         },
 
         limpar(){
@@ -276,39 +290,65 @@ export default {
             } 
         },
 
+        validaPaciente(id){
+            if(this.id == ""){
+                alert("Paciente não selecionado!")
+            }
+            else{
+                if(this.nome == "" || this.email == "" || this.telefone == "" || 
+                this.celular == "" || this.dt_nascimento == "" || this.sexo == "",
+                this.cpf == "" || this.rua == "" || this.cep == "" || this.numCasa == "", 
+                this.complemento == "" || this.bairro == "" || this.cidade == ""){
+                    alert("Preencha todos os campos!");
+                }
+                else{ 
+                    if(this.cpfExiste()){
+                        alert("CPF já cadastrado!");
+                    }
+                    else{
+                        this.putPaciente(id);
+                    }
+                }
+            }
+        },
+
         PutPaciente(id){
             let obj ={
-              nome: this.nome,
-              email: this.email,
-              telefone: this.telefone,
-              celular: this.celular,
-              dt_nascimento: this.dt_nascimento,
-              sexo: this.sexo,
-              cpf: this.cpf,
-              rua: this.rua,
-              cep: this.cep,
-              num_casa: this.num_casa,
-              complemento: this.complemento,
-              bairro: this.bairro,
-              cidade: this.cidade
+                nome: this.nome,
+                email: this.email,
+                telefone: this.telefone,
+                celular: this.celular,
+                dt_nascimento: this.dt_nascimento,
+                sexo: this.sexo,
+                cpf: this.cpf,
+                rua: this.rua,
+                cep: this.cep,
+                num_casa: this.num_casa,
+                complemento: this.complemento,
+                bairro: this.bairro,
+                cidade: this.cidade
 
             };
           
-            axios.put(this.baseURI+"/" + id, obj).then((result) =>{
-              console.log(result)
-            })
-
-            alert("Paciente atualizado!");
-            window.location.reload()
+            if(axios.put(this.baseURI+"/" + id, obj).then((result) =>{
+            console.log(result)})){
+                alert("Paciente atualizado!");
+                window.location.reload()
+            }
+            else{
+                alert("Erro ao atualizar!")
+            }
         },
 
         deletePaciente(id){
-           axios.delete(this.baseURI +"/"+ id,).then((result) =>{
-             console.log(result)
-           })
-
-            alert("Paciente deletado!");
-            window.location.reload()
+            if(axios.delete(this.baseURI +"/"+ id,).then((result) =>{
+             console.log(result)})){
+                alert("Paciente deletado!");
+                window.location.reload()
+            }
+            else{
+                alert("Erro ao deletar!")
+            } 
         }
     },
     

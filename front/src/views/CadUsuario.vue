@@ -54,7 +54,7 @@
                     </div>
                   </div>
                   <hr>
-                  <button type="submit" class="btn btn-primary btn-lg btn-block" @click="PostUsuario">Cadastar</button><br/>
+                  <button type="submit" class="btn btn-primary btn-lg btn-block" @click="validaUsuario">Cadastar</button><br/>
                   <button type="reset" class="btn btn-primary btn-lg btn-block" @click="this.$router.replace('pagina-inicial')">Voltar</button>
                   
                   
@@ -86,30 +86,36 @@ export default {
       methods: {
         usuarioExiste(){
             for(var i = 0; i < this.usuarios.length; i++){
-                if(this.usuario == this.usuarios[i].usuario)
-                  return true
+                if(this.usuario == this.usuarios[i].usuario){
+                    if(this.id == this.usuarios[i].id){ // verifica se o paciente que achou o crm igual é o proprio paciente
+                        return false
+                    }
+                    else{
+                        return true 
+                    }
                 }
-            return false  
+            }
+            return false
         },
 
         validaUsuario(){
             if(this.nome == "" || this.usuario == "" || this.senha == ""){
               alert("Preencha todos os campos!");
             }
-            if(this.usuarioExiste){
-              alert("Usuario já cadastrado!");
-            }
             else{
-              this.PostUsuario();
-            }
-
+              if(this.usuarioExiste()){
+                alert("Usuario já cadastrado!");
+              }
+              else{
+                this.PostUsuario();
+              }
+            }       
         },
 
         limpar(){
           this.nome = "",
           this.usuario = "",
           this.senha = ""
-
         },
 
         PostUsuario(){
@@ -119,12 +125,14 @@ export default {
               senha: this.senha  
             };
 
-            axios.post(this.baseURI, obj).then((result) =>{ 
-              this.usuarios = result.data
-            })
-            
-            alert("USUARIO CADASTRADO!");
-            this.limpar();
+            if(axios.post(this.baseURI, obj).then((result) =>{ 
+            this.pacientes = result.data})){
+              alert("USUÁRIO CADASTRADO!");
+              this.limpar();
+            }
+            else{
+              alert("Erro ao cadastrar!")
+            }
         }
 
       },

@@ -16,7 +16,7 @@
                                 <td>CBOS</td>
                                 <td>EMAIL</td>
                                 <td>TELEFONE</td>
-                                <td>CELULAR</td>
+                                <!--<td>CELULAR</td>-->
                             </tr>
                             <!-- FALTA ALTERAR -->
                             <tr  v-for="medico in medicos " :key="medico.id" >
@@ -24,12 +24,12 @@
                                 <td>{{ medico.cpf }}</td>
                                 <td>{{ medico.dt_nascimento }}</td>
                                 <td>{{ medico.sexo }}</td>
-                                <!-- <td>{{ medico.crm}}</td>
+                                <td>{{ medico.crm}}</td>
                                 <td>{{ medico.estado }}</td>
                                 <td>{{ medico.cbos }}</td>
                                 <td>{{ medico.email }}</td>
                                 <td>{{ medico.telefone }}</td>
-                                <td>{{ medico.celular }}</td> -->
+                                <!--<td>{{ medico.celular }}</td>-->
                                 <td>
                                     <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(medico.id)">Editar</button>
                                     <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteMedico(medico.id)">Deletar</button>
@@ -162,7 +162,7 @@
                     </div>
                     
                     <div class="mb-4 justify-content-md-center col-md-auto w-25 centraliza">
-                        <button type="reset" class="btn btn-light btn-lg btn-block" @click="PutMedico(this.id)">Atualizar</button>   
+                        <button type="reset" class="btn btn-light btn-lg btn-block" @click="validaMedico(this.id)">Atualizar</button>   
                     </div>
                 </div>
             </div>
@@ -199,6 +199,34 @@ export default {
                 })
         },
 
+        crmExiste(){
+            for(var i = 0; i < this.medicos.length; i++){
+                if(this.crm == this.medicos[i].crm){
+                    if(this.id == this.medicos[i].id){ // verifica se o medico que acho o crm igual é o proprio medico
+                        return false
+                    }
+                    else{
+                        return true 
+                    }
+                }
+            }
+            return false
+        },
+
+        cpfExiste(){
+            for(var i = 0; i < this.medicos.length; i++){
+                if(this.cpf == this.medicos[i].cpf){
+                    if(this.id == this.medicos[i].id){ 
+                        return false
+                    }
+                    else{
+                        return true 
+                    }
+                }
+            }
+            return false
+        },
+
         preencheCampos(id){
             for(var i = 0; i < this.medicos.length; i++){
                 if(id == this.medicos[i].id){
@@ -231,6 +259,30 @@ export default {
             this.cbos = "" 
         },
 
+        validaMedico(id){
+            if(this.id == ""){
+                alert("Médico não selecionado!")
+            }
+            else{
+                if(this.nome == "" || this.email == "" || this.telefone == "" || 
+                this.celular == "" || this.dt_nascimento == "" || this.sexo == "",
+                this.cpf == "" || this.crm == "" || this.estado == "" || this.cbos == ""){
+                    alert("Preencha todos os campos!");
+                }
+                else{
+                    if(this.crmExiste()){
+                        alert("CRM já cadastrado!");
+                    }
+                    else if(this.cpfExiste()){
+                        alert("CPF já cadastrado!");
+                    }
+                    else{
+                        this.PutMedico(id);
+                    }
+                }
+            }
+        },
+        
         PutMedico(id){
             let obj ={
                 nome: this.nome,
@@ -243,25 +295,28 @@ export default {
                 crm: this.crm,
                 estado: this.estado,
                 cbos: this.cbos 
-            };
-
-            axios.put(this.baseURI+ "/" + id, obj).then((result) =>{
-              console.log(result)
-            })
-
-            alert("Médico atualizado!");
-            window.location.reload()
-
+            }
+          
+            if(axios.put(this.baseURI+"/" + id, obj).then((result) =>{
+            console.log(result)})){
+                alert("Médico atualizado!");
+                window.location.reload()
+            }
+            else{
+                alert("Erro ao atualizar!")
+            }
         },
-        
-        DeleteMedico(id){
-          axios.delete(this.baseURI +"/"+id).then((result) =>{
-            console.log(result)
-          })
-          alert("Médico deletado!");
-          window.location.reload()
-        }
 
+        deleteMedico(id){
+            if(axios.delete(this.baseURI +"/"+ id,).then((result) =>{
+             console.log(result)})){
+                alert("Médico deletado!");
+                window.location.reload()
+            }
+            else{
+                alert("Erro ao deletar!")
+            } 
+        }
     },
     
     created: function(){
