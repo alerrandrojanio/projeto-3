@@ -28,6 +28,11 @@ exports.save = async (medico) => {
     const result = await pool.query("SELECT * FROM medicos WHERE nome=$1;", [nome]);
     return result.rows;
   };
+
+  exports.getQtd = async (qtd) => {
+    const result = await pool.query("SELECT * FROM medicos LIMIT $1;",[qtd]);
+    return result.rows;
+  };
    
   exports.update = async (id, medico) => {
     const result = await pool.query(

@@ -7,6 +7,14 @@ exports.get = async (req, res)=>{
     res.json(await usuarioService.getAll());
 };
 
+exports.getByNome = async (req,res) =>{
+    res.json(await usuarioService.getByNome(req.query.nome));
+};
+
+exports.getQtd = async (req, res) =>{
+    res.json(await usuarioService.getQtd(req.query.qtd));
+  };
+
 exports.post = async (req, res) =>{
     if(req.body.nome == null||
         req.body.usuario == null||

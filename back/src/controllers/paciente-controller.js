@@ -11,6 +11,10 @@ exports.getByNome = async (req,res) =>{
     res.json(await pacienteService.getByNome(req.query.nome));
 };
 
+exports.getQtd = async (req, res) =>{
+    res.json(await pacienteService.getQtd(req.query.qtd));
+  };
+
 exports.post = async (req, res) =>{
     if(req.body.nome.length < 2 || 
         req.body.email == null ||

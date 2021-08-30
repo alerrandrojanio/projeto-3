@@ -33,7 +33,12 @@ exports.save = async (paciente) => {
     ]);
     return result.rows;
   };
-   
+  
+  exports.getQtd = async (qtd) => {
+    const result = await pool.query("SELECT * FROM pacientes LIMIT $1;",[qtd]);
+    return result.rows;
+  };
+
   exports.update = async (id, paciente) => {
     const result = await pool.query(
       "UPDATE pacientes SET nome=$1, email=$2, telefone=$3, celular=$4, dt_nascimento=$5, sexo=$6, cpf=$7, rua=$8, cep=$9, num_casa=$10, complemento=$11, bairro=$12, cidade=$13 WHERE id=$14 RETURNING *;",

@@ -10,6 +10,14 @@ class UsuarioService {
       return usuarioRepo.findAll();
     }
 
+    getByNome(nome) {
+      return usuarioRepo.findByName(nome);
+    }
+
+    getQtd(qtd){
+      return usuarioRepo.getByQty(qtd)
+    }
+
     update(id, usuario) {
       return usuarioRepo.update(id, usuario);
     }
