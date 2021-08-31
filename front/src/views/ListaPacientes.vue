@@ -228,6 +228,8 @@ export default {
                 bairro: "",
                 cidade: "",
                 pacientes: [],
+                pacientesQtd: [],
+                pacientesNome: [],
                 baseURI:"http://localhost:3000/pacientes"      
             }
       },
@@ -349,7 +351,23 @@ export default {
             else{
                 alert("Erro ao deletar!")
             } 
-        }
+        },
+
+        buscarQtd(){
+            axios.get(this.baseURI + "/qtd?qtd=" + this.campo_qtd).then((result) =>{
+                this.pacientesQtd = result.data
+            }).catch(function(error) {
+                console.log(error);
+            })
+        },
+
+         buscarNome(){
+            axios.get(this.baseURI + "/nome?nome=" + this.campo_nome).then((result) =>{
+                this.pacientesNome = result.data
+            }).catch(function(error) {
+                console.log(error);
+            })
+        },
     },
     
     created: function(){

@@ -16,7 +16,7 @@ class MedicoService {
     }
 
     getQtd(qtd){
-      return medicoRepo.getByQty(qtd)
+      return medicoRepo.getByQtd(qtd);
     }
 
     update(id, medico) {

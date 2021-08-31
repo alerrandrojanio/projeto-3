@@ -1,38 +1,9 @@
 <template>
   <div class="container">
-      <h1 class="h4 text-light mb-4 align-center">Lista de Médicos</h1>
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0 d-none d-lg-block bg-primary text-center">
                 <div class="px-2 border-0 shadow-lg my-5 ">
                         <h1 class="h4 text-light mb-4 align-center">Lista de Médicos</h1>
-                        
-                        <div class="form-row">
-                        <div class="col barra-pesquisa">
-                            <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Pesquisar por nome" aria-label="Search" aria-describedby="basic-addon2" v-model="campo_nome">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">
-                                     <i class="fas fa-search fa-sm"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col barra-pesquisa2">
-                            <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Quantidade" aria-label="Search" aria-describedby="basic-addon2" v-model="campo_quantidade">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">
-                                     <i class="fas fa-search fa-sm"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-
-                        <br/>
-                        <br/>
-                        <br/>
                         <table class="table table-striped table-light rounded">
                             <tr>
                                 <td>NOME</td>
@@ -74,7 +45,123 @@
                             
                         </div>
             </div>
+
         </div>
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0 d-none d-lg-block bg-primary text-center">
+                <div class="px-2 border-0 shadow-lg my-5 ">
+                        <h1 class="h4 text-light mb-4 align-center">Pesquisa</h1>
+                        
+                        <div class="form-row">
+                        <div class="col barra-pesquisa">
+                            <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Pesquisar por nome" aria-label="Search" aria-describedby="basic-addon2" v-model="campo_nome">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button" @click="buscarNome()">
+                                     <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        </div>
+
+                        <br/>
+                        <br/>
+                        <br/>
+                        <table class="table table-striped table-light rounded">
+                            <tr>
+                                <td>NOME</td>
+                                <td>CPF</td>
+                                <td>DATA DE NASCIMENTO</td>
+                                <td>SEXO</td>
+                                <td>CRM</td>
+                                <td>ESTADO</td>
+                                <td>CBOS</td>
+                                <td>EMAIL</td>
+                                <td>TELEFONE</td>
+                                <!--<td>CELULAR</td>-->
+                            </tr>
+                            <!-- FALTA ALTERAR -->
+                            <tr  v-for="medico in medicosNome " :key="medico.id" >
+                                <td>{{ medico.nome}}</td>
+                                <td>{{ medico.cpf }}</td>
+                                <td>{{ medico.dt_nascimento }}</td>
+                                <td>{{ medico.sexo }}</td>
+                                <td>{{ medico.crm}}</td>
+                                <td>{{ medico.estado }}</td>
+                                <td>{{ medico.cbos }}</td>
+                                <td>{{ medico.email }}</td>
+                                <td>{{ medico.telefone }}</td>
+                                <!--<td>{{ medico.celular }}</td>-->
+                                <td>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(medico.id)">Editar</button>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteMedico(medico.id)">Deletar</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="px-2 border-0 shadow-lg my-5 ">
+                    <div class="form-row">
+                        <div class="col barra-pesquisa">
+                            <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Quantidade" aria-label="Search" aria-describedby="basic-addon2" v-model="campo_qtd">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button" @click="buscarQtd()">
+                                     <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        </div>
+
+                        <br/>
+                        <br/>
+                        <br/>
+                        <table class="table table-striped table-light rounded">
+                            <tr>
+                                <td>NOME</td>
+                                <td>CPF</td>
+                                <td>DATA DE NASCIMENTO</td>
+                                <td>SEXO</td>
+                                <td>CRM</td>
+                                <td>ESTADO</td>
+                                <td>CBOS</td>
+                                <td>EMAIL</td>
+                                <td>TELEFONE</td>
+                                <!--<td>CELULAR</td>-->
+                            </tr>
+                            <!-- FALTA ALTERAR -->
+                            <tr  v-for="medico in medicosQtd " :key="medico.id" >
+                                <td>{{ medico.nome}}</td>
+                                <td>{{ medico.cpf }}</td>
+                                <td>{{ medico.dt_nascimento }}</td>
+                                <td>{{ medico.sexo }}</td>
+                                <td>{{ medico.crm}}</td>
+                                <td>{{ medico.estado }}</td>
+                                <td>{{ medico.cbos }}</td>
+                                <td>{{ medico.email }}</td>
+                                <td>{{ medico.telefone }}</td>
+                                <!--<td>{{ medico.celular }}</td>-->
+                                <td>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(medico.id)">Editar</button>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteMedico(medico.id)">Deletar</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                        <br/>
+                        <hr/>
+                        <br/>
+                        <div class="mb-4 justify-content-md-center col-md-auto w-25 centraliza">
+                            <!-- <button type="submit" class="btn btn-primary btn-lg btn-block" @click="getAll">Mostrar</button><br/> -->
+                            <button type="reset" class="btn btn-light btn-lg btn-block " @click="this.$router.replace('pagina-inicial')">Voltar</button>
+                        </div>
+            </div>
+            </div>
 
          <div class="container">
             <h1 class="h4 text-light mb-4 align-center">Editar</h1>
@@ -196,7 +283,13 @@
             </div>
         </div>
 
-    </div>
+
+        
+        
+        </div>
+                    
+
+                    
 </template>
 
 <script>
@@ -206,7 +299,7 @@ export default {
       data() {
             return {
                 campo_nome: "",
-                campo_quantidade: "",
+                campo_qtd: "",
                 id: "",
                 nome: "",
                 email: "",
@@ -219,6 +312,8 @@ export default {
                 estado: "",
                 cbos: "",
                 medicos: [],
+                medicosQtd: [],
+                medicosNome: [],
                 baseURI:"http://localhost:3000/medicos"      
             }
       },
@@ -346,12 +441,29 @@ export default {
             else{
                 alert("Erro ao deletar!")
             } 
-        }
+        },
+
+        buscarQtd(){
+            axios.get(this.baseURI + "/qtd?qtd=" + this.campo_qtd).then((result) =>{
+                this.medicosQtd = result.data
+            }).catch(function(error) {
+                console.log(error);
+            })
+        },
+
+         buscarNome(){
+            axios.get(this.baseURI + "/nome?nome=" + this.campo_nome).then((result) =>{
+                this.medicosNome = result.data
+            }).catch(function(error) {
+                console.log(error);
+            })
+        },
     },
     
     created: function(){
         this.$nextTick(this.getAll)
     }
+    
 }
 </script>
 
@@ -366,12 +478,6 @@ export default {
     width: 300px;
     position: absolute;
     right: 20px;
-}
-
-.barra-pesquisa2{
-    width: 200px;
-    position: absolute;
-    right: 320px;
 }
 
 </style>

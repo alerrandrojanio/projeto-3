@@ -4,8 +4,8 @@ const router = express.Router();
 const controller = require("../controllers/medico-controller");
 
 router.get("/", controller.get);
-router.get("/search", controller.getByNome);
-router.get("/procu", controller.getQtd);
+router.get("/nome", controller.getByNome);
+router.get("/qtd", controller.getQtd);
 router.post("/", controller.post);
 router.put("/:id", controller.put);
 router.delete("/:id", controller.delete);
