@@ -2,8 +2,9 @@
   <div class="container">
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0 d-none d-lg-block bg-primary text-center">
-                <div class="px-2 border-0 shadow-lg my-5 ">
-                        <h1 class="h4 text-light mb-4 align-center">Lista de Médicos</h1>
+                    <br/>
+                    <h1 class="h3 text-light mb-4 align-center">Lista de Médicos</h1>
+                <div class="px-2 border-0 my-5 ">
                         <table class="table table-striped table-light rounded">
                             <tr>
                                 <td>NOME</td>
@@ -17,7 +18,7 @@
                                 <td>TELEFONE</td>
                                 <!--<td>CELULAR</td>-->
                             </tr>
-                            <!-- FALTA ALTERAR -->
+                            
                             <tr  v-for="medico in medicos " :key="medico.id" >
                                 <td>{{ medico.nome}}</td>
                                 <td>{{ medico.cpf }}</td>
@@ -50,8 +51,9 @@
 
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0 d-none d-lg-block bg-primary text-center">
-                <div class="px-2 border-0 shadow-lg my-5 ">
-                        <h1 class="h4 text-light mb-4 align-center">Pesquisa</h1>
+                <br/>
+                    <h1 class="h3 text-light mb-4 align-center">Pesquisar</h1>
+                <div class="px-2 border-0 my-5">
                         
                         <div class="form-row">
                         <div class="col barra-pesquisa">
@@ -103,7 +105,7 @@
                         </table>
                     </div>
 
-                    <div class="px-2 border-0 shadow-lg my-5 ">
+                    <div class="px-2 border-0  my-5 ">
                     <div class="form-row">
                         <div class="col barra-pesquisa">
                             <div class="input-group">
@@ -164,10 +166,11 @@
             </div>
 
          <div class="container">
-            <h1 class="h4 text-light mb-4 align-center">Editar</h1>
             <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="card-body p-0 d-none d-lg-block bg-primary text-center">
-                    <div class="px-2 border-0 shadow-lg my-5">
+                    <br/>
+                    <h1 class="h3 text-light mb-4 align-center">Editar</h1>
+                    <div class="px-2 border-0 my-5">
                         
                         <div class="form-row">
                             <div class="col left-inner-addon">
