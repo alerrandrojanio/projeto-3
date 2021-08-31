@@ -15,7 +15,7 @@ class PacienteService {
     }
 
     getQtd(qtd){
-      return pacienteRepo.getByQty(qtd)
+      return pacienteRepo.getByQtd(qtd)
     }
   
     update(id, paciente) {

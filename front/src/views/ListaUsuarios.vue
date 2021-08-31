@@ -61,32 +61,20 @@
                         <br/>
                         <table class="table table-striped table-light rounded">
                             <tr>
+                                <td>ID</td>
                                 <td>NOME</td>
-                                <td>CPF</td>
-                                <td>DATA DE NASCIMENTO</td>
-                                <td>SEXO</td>
-                                <td>CRM</td>
-                                <td>ESTADO</td>
-                                <td>CBOS</td>
-                                <td>EMAIL</td>
-                                <td>TELEFONE</td>
-                                <!--<td>CELULAR</td>-->
+                                <td>USUÁRIO</td>
+                                <td>SENHA</td>
                             </tr>
                             <!-- FALTA ALTERAR -->
-                            <tr  v-for="medico in medicosNome " :key="medico.id" >
-                                <td>{{ medico.nome}}</td>
-                                <td>{{ medico.cpf }}</td>
-                                <td>{{ medico.dt_nascimento }}</td>
-                                <td>{{ medico.sexo }}</td>
-                                <td>{{ medico.crm}}</td>
-                                <td>{{ medico.estado }}</td>
-                                <td>{{ medico.cbos }}</td>
-                                <td>{{ medico.email }}</td>
-                                <td>{{ medico.telefone }}</td>
-                                <!--<td>{{ medico.celular }}</td>-->
+                            <tr  v-for="usuario in usuariosNome" :key="usuario.id" >
+                                <td>{{ usuario.id}}</td>
+                                <td>{{ usuario.nome}}</td>
+                                <td>{{ usuario.usuario }}</td>
+                                <td>{{ usuario.senha }}</td>
                                 <td>
-                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(medico.id)">Editar</button>
-                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteMedico(medico.id)">Deletar</button>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(usuario.id)">Editar</button>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteMedico(usuario.id)">Deletar</button>
                                 </td>
                             </tr>
                         </table>
@@ -112,32 +100,20 @@
                         <br/>
                         <table class="table table-striped table-light rounded">
                             <tr>
+                                <td>ID</td>
                                 <td>NOME</td>
-                                <td>CPF</td>
-                                <td>DATA DE NASCIMENTO</td>
-                                <td>SEXO</td>
-                                <td>CRM</td>
-                                <td>ESTADO</td>
-                                <td>CBOS</td>
-                                <td>EMAIL</td>
-                                <td>TELEFONE</td>
-                                <!--<td>CELULAR</td>-->
+                                <td>USUÁRIO</td>
+                                <td>SENHA</td>
                             </tr>
                             <!-- FALTA ALTERAR -->
-                            <tr  v-for="medico in medicosQtd " :key="medico.id" >
-                                <td>{{ medico.nome}}</td>
-                                <td>{{ medico.cpf }}</td>
-                                <td>{{ medico.dt_nascimento }}</td>
-                                <td>{{ medico.sexo }}</td>
-                                <td>{{ medico.crm}}</td>
-                                <td>{{ medico.estado }}</td>
-                                <td>{{ medico.cbos }}</td>
-                                <td>{{ medico.email }}</td>
-                                <td>{{ medico.telefone }}</td>
-                                <!--<td>{{ medico.celular }}</td>-->
+                            <tr  v-for="usuario in usuariosQtd" :key="usuario.id" >
+                                <td>{{ usuario.id}}</td>
+                                <td>{{ usuario.nome}}</td>
+                                <td>{{ usuario.usuario }}</td>
+                                <td>{{ usuario.senha }}</td>
                                 <td>
-                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(medico.id)">Editar</button>
-                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteMedico(medico.id)">Deletar</button>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(usuario.id)">Editar</button>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteMedico(usuario.id)">Deletar</button>
                                 </td>
                             </tr>
                         </table>

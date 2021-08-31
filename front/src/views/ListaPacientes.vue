@@ -83,30 +83,36 @@
                             <tr>
                                 <td>NOME</td>
                                 <td>CPF</td>
-                                <td>DATA DE NASCIMENTO</td>
+                                <td>DT NASCIMENTO</td>
                                 <td>SEXO</td>
-                                <td>CRM</td>
-                                <td>ESTADO</td>
-                                <td>CBOS</td>
+                                <td>RUA</td>
+                                <td>NÚMERO</td>
+                                <!-- <td>COMPLEMENTO</td> -->
+                                <!-- <td>CEP</td> -->
+                                <td>BAIRRO</td>
+                                <td>CIDADE</td>
                                 <td>EMAIL</td>
-                                <td>TELEFONE</td>
-                                <!--<td>CELULAR</td>-->
+                                <!-- <td>TELEFONE</td> -->
+                                <!-- <td>CELULAR</td> -->
                             </tr>
                             <!-- FALTA ALTERAR -->
-                            <tr  v-for="medico in medicosNome " :key="medico.id" >
-                                <td>{{ medico.nome}}</td>
-                                <td>{{ medico.cpf }}</td>
-                                <td>{{ medico.dt_nascimento }}</td>
-                                <td>{{ medico.sexo }}</td>
-                                <td>{{ medico.crm}}</td>
-                                <td>{{ medico.estado }}</td>
-                                <td>{{ medico.cbos }}</td>
-                                <td>{{ medico.email }}</td>
-                                <td>{{ medico.telefone }}</td>
-                                <!--<td>{{ medico.celular }}</td>-->
+                            <tr v-for="paciente in pacientesNome " :key="paciente.id">
+                                <td>{{ paciente.nome}}</td>
+                                <td>{{ paciente.cpf }}</td>
+                                <td>{{ paciente.dt_nascimento }}</td>
+                                <td>{{ paciente.sexo }}</td>
+                                <td>{{ paciente.rua}}</td>
+                                <td>{{ paciente.num_casa }}</td>
+                                <!-- <td>{{ paciente.complemento }}</td> -->
+                                <!-- <td>{{ paciente.cep }}</td> -->
+                                <td>{{ paciente.bairro }}</td>
+                                <td>{{ paciente.cidade }}</td>
+                                <td>{{ paciente.email }}</td>
+                                <!-- <td>{{ paciente.telefone }}</td> -->
+                                <!-- <td>{{ paciente.celular }}</td> -->
                                 <td>
-                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(medico.id)">Editar</button>
-                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteMedico(medico.id)">Deletar</button>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(paciente.id)">Editar</button>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteMedico(paciente.id)">Deletar</button>
                                 </td>
                             </tr>
                         </table>
@@ -134,30 +140,36 @@
                             <tr>
                                 <td>NOME</td>
                                 <td>CPF</td>
-                                <td>DATA DE NASCIMENTO</td>
+                                <td>DT NASCIMENTO</td>
                                 <td>SEXO</td>
-                                <td>CRM</td>
-                                <td>ESTADO</td>
-                                <td>CBOS</td>
+                                <td>RUA</td>
+                                <td>NÚMERO</td>
+                                <!-- <td>COMPLEMENTO</td> -->
+                                <!-- <td>CEP</td> -->
+                                <td>BAIRRO</td>
+                                <td>CIDADE</td>
                                 <td>EMAIL</td>
-                                <td>TELEFONE</td>
-                                <!--<td>CELULAR</td>-->
+                                <!-- <td>TELEFONE</td> -->
+                                <!-- <td>CELULAR</td> -->
                             </tr>
                             <!-- FALTA ALTERAR -->
-                            <tr  v-for="medico in medicosQtd " :key="medico.id" >
-                                <td>{{ medico.nome}}</td>
-                                <td>{{ medico.cpf }}</td>
-                                <td>{{ medico.dt_nascimento }}</td>
-                                <td>{{ medico.sexo }}</td>
-                                <td>{{ medico.crm}}</td>
-                                <td>{{ medico.estado }}</td>
-                                <td>{{ medico.cbos }}</td>
-                                <td>{{ medico.email }}</td>
-                                <td>{{ medico.telefone }}</td>
-                                <!--<td>{{ medico.celular }}</td>-->
+                            <tr  v-for="paciente in pacientesQtd " :key="paciente.id" >
+                                <td>{{ paciente.nome}}</td>
+                                <td>{{ paciente.cpf }}</td>
+                                <td>{{ paciente.dt_nascimento }}</td>
+                                <td>{{ paciente.sexo }}</td>
+                                <td>{{ paciente.rua}}</td>
+                                <td>{{ paciente.num_casa }}</td>
+                                <!-- <td>{{ paciente.complemento }}</td> -->
+                                <!-- <td>{{ paciente.cep }}</td> -->
+                                <td>{{ paciente.bairro }}</td>
+                                <td>{{ paciente.cidade }}</td>
+                                <td>{{ paciente.email }}</td>
+                                <!-- <td>{{ paciente.telefone }}</td> -->
+                                <!-- <td>{{ paciente.celular }}</td> -->
                                 <td>
-                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(medico.id)">Editar</button>
-                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteMedico(medico.id)">Deletar</button>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(paciente.id)">Editar</button>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteMedico(paciente.id)">Deletar</button>
                                 </td>
                             </tr>
                         </table>

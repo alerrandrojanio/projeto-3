@@ -34,7 +34,7 @@ exports.save = async (paciente) => {
     return result.rows;
   };
   
-  exports.getQtd = async (qtd) => {
+  exports.getByQtd = async (qtd) => {
     const result = await pool.query("SELECT * FROM pacientes LIMIT $1;",[qtd]);
     return result.rows;
   };
