@@ -124,6 +124,8 @@
                     <!-- CBOS -->
                     <input type="text" class="form-control" placeholder="Digite o CBOS" v-model="cbos">
                   </div>
+                  <label for="selecao-arquivo">Selecionar um arquivo &#187;</label>
+                  <input  type="file" id="file" ref="file" name="image" />
                   <hr>
                   <button type="submit" class="btn btn-primary btn-lg btn-block" @click="validaMedico">Cadastar</button> <br/>
                   <button type="reset" class="btn btn-primary btn-lg btn-block" @click="this.$router.replace('pagina-inicial')">Voltar</button>
@@ -157,10 +159,37 @@ export default {
                 estado: "",
                 cbos: "",
                 medicos: [],
-                baseURI:"http://localhost:3000/medicos"         
+                baseURI:"http://localhost:3000/medicos",
+                baseUpload:"http://localhost:3000/upload"   
             }
       },
       methods: {
+      handleFileUpload(id) {
+        this.file = this.$refs.file.files[0];
+  
+        let obj = {
+          resource: "recurso",
+          id: id,
+        };
+        let json = JSON.stringify(obj);
+  
+        let form = new FormData();
+        form.append("obj", json);
+        form.append("file", this.file);
+  
+        console.log(form.getAll("file"));
+  
+        axios
+          .post(this.baseUpload, form, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((result) => {
+            console.log(result);
+          });
+    },
+
         limpar(){
             this.nome = "",
             this.email = "",
@@ -236,7 +265,8 @@ export default {
             }
 
             if(axios.post(this.baseURI, obj).then((result) =>{ 
-            this.medicos = result.data})){
+            this.medicos = result.data
+            this.handleFileUpload(result.data.id)})){
               alert("MEDICO CADASTRADO!");
               this.limpar();
             }
@@ -309,5 +339,18 @@ input[type="date"]:valid:before {
     width: 195px;
     background-image: url(../assets/Avatar.png);
 }
+
+/* input[type= "file"]{
+  display: none;
+}
+
+.teste{
+  background-color: #3498db;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  margin: 10px;
+  padding: 6px 20px
+} */
 
 </style>

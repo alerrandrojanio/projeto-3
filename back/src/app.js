@@ -30,12 +30,14 @@ const pacientes = require("./routes/paciente-route");
 const medicos = require("./routes/medico-route");
 const consultas = require("./routes/consulta-route");
 const usuarios = require("./routes/usuario-route");
+const upload = require("./routes/upload-route");
 
 app.use("/", index);
 app.use("/pacientes", pacientes);
 app.use("/medicos", medicos);
 app.use("/consultas", consultas);
 app.use("/usuarios", usuarios);
+app.use("/upload", upload);
 app.use("/ok", (req, res, next) => {
   session = req.session;
 

@@ -120,7 +120,15 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="card-body">
-                                        <div><img src="img/medico1.jpg" alt="" class="img-thumbnail"></div>
+                                        <div><img
+                                                    :src="
+                                                    'http://localhost:3000/uploads/recurso/' + medico.id + '?' + Math.random()
+                                                    "
+                                                    width="200"
+                                                    height="150"
+                                                    alt="Nada"
+                                                    srcset=""
+                                                /></div>
                                     </div>
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-primary btn-lg btn-block btn-sm"
