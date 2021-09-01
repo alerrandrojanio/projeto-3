@@ -196,14 +196,15 @@ export default {
 
             };
 
-            console.table(obj)
+            //console.table(obj)
             axios.post(this.baseURI, obj).then((result) =>{ 
                 this.consultas = result.data
+            }).catch(function(error) {
+                alert(error);
             })
-
+            
             alert("CONSULTA MARCADA!");
             this.limpar();
-
         },
 
         PutConsulta(){
@@ -217,13 +218,17 @@ export default {
             
             axios.put(this.baseURI+"/" + this.id, obj).then((result) =>{
               console.log(result)
+            }).catch(function(error) {
+                alert(error);
             })
         },
 
         DeleteConsulta(){
           axios.delete(this.baseURI +"/"+this.id,).then((result) =>{
               console.log(result)
-          })
+          }).catch(function(error) {
+                alert(error);
+            })
         },
 
         getMedicoPaciente() {
