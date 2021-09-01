@@ -372,7 +372,7 @@ export default {
 
         cpfExiste(){
             for(var i = 0; i < this.pacientes.length; i++){
-                if(this.crm == this.pacientes[i].cpf){
+                if(this.cpf == this.pacientes[i].cpf){
                     if(this.id == this.pacientes[i].id){ // verifica se o paciente que achou o crm igual é o proprio paciente
                         return false
                     }

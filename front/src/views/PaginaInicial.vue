@@ -102,7 +102,7 @@
                 </nav>
 
                  
-                <div class="container"  v-for="medico in medicos " :key="medico.id" >
+                <div class="col"  v-for="medico in medicos " :key="medico.id" >
 
 
                  <div class="row">
@@ -120,15 +120,12 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="card-body">
-                                        <div><img
-                                                    :src="
-                                                    'http://localhost:3000/uploads/recurso/' + medico.id + '?' + Math.random()
-                                                    "
-                                                    width="200"
-                                                    height="150"
+                                        <div><img :src="'http://localhost:3000/uploads/recurso/' + medico.id + '?' + Math.random()"
+                                                    width="300"
+                                                    height="300"
                                                     alt="Nada"
-                                                    srcset=""
-                                                /></div>
+                                                    srcset=""/>
+                                        </div>
                                     </div>
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-primary btn-lg btn-block btn-sm"

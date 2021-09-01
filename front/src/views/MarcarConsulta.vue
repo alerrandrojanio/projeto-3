@@ -169,7 +169,7 @@ export default {
             
             for(var i = 0; i < this.medicos.length; i++){
                 if(crm == this.medicos[i].crm){
-                    //alert(this.medicos[i].id)
+                    alert(this.medicos[i].id)
                     return this.medicos[i].id;
                 }
             }
@@ -181,7 +181,7 @@ export default {
             
             for(var i = 0; i < this.pacientes.length; i++){
                 if(cpf == this.pacientes[i].cpf){
-                    //alert(this.pacientes[i].id)
+                    alert(this.pacientes[i].id)
                     return this.pacientes[i].id;
                 }
             }   

@@ -32,7 +32,7 @@
                                 <!--<td>{{ medico.celular }}</td>-->
                                 <td>
                                     <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(medico.id)">Editar</button>
-                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteMedico(medico.id)">Deletar</button>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="deleteMedico(medico.id)">Deletar</button>
                                 </td>
                             </tr>
                         </table>
@@ -99,7 +99,7 @@
                                 <!--<td>{{ medico.celular }}</td>-->
                                 <td>
                                     <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(medico.id)">Editar</button>
-                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteMedico(medico.id)">Deletar</button>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="deleteMedico(medico.id)">Deletar</button>
                                 </td>
                             </tr>
                         </table>
@@ -150,7 +150,7 @@
                                 <!--<td>{{ medico.celular }}</td>-->
                                 <td>
                                     <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(medico.id)">Editar</button>
-                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteMedico(medico.id)">Deletar</button>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="deleteMedico(medico.id)">Deletar</button>
                                 </td>
                             </tr>
                         </table>
@@ -436,14 +436,13 @@ export default {
         },
 
         deleteMedico(id){
-            if(axios.delete(this.baseURI +"/"+ id,).then((result) =>{
-             console.log(result)})){
-                alert("Médico deletado!");
-                window.location.reload()
-            }
-            else{
-                alert("Erro ao deletar!")
-            } 
+            axios.delete(this.baseURI +"/"+ id,).then((result) =>{
+            console.log(result)
+             }).catch(function(error) {
+                console.log(error);
+            })
+            alert("Médico deletado!");
+            window.location.reload()
         },
 
         buscarQtd(){
