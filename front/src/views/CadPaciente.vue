@@ -150,7 +150,7 @@
                     </div>
                   </div>
                   <hr>
-                  <button type="submit" class="btn btn-primary btn-lg btn-block" @click="validaPaciente">Cadastar</button><br/>
+                  <button type="submit" class="btn btn-primary btn-lg btn-block" @click="validaPaciente()">Cadastar</button><br/>
                   <button type="reset" class="btn btn-primary btn-lg btn-block" @click="this.$router.replace('pagina-inicial')">Voltar</button>
                   
                   
@@ -176,12 +176,12 @@ export default {
                 email: "",
                 telefone: "",
                 celular: "",
-                dtNascimento: "",
+                dt_nascimento: "",
                 sexo: "",
                 cpf: "",
                 rua: "",
                 cep: "",
-                numCasa: "",
+                num_casa: "",
                 complemento: "",
                 bairro: "",
                 cidade: "",
@@ -192,7 +192,7 @@ export default {
       methods: {
         cpfExiste(){
             for(var i = 0; i < this.pacientes.length; i++){
-                if(this.crm == this.pacientes[i].cpf){
+                if(this.cpf == this.pacientes[i].cpf){
                     if(this.id == this.pacientes[i].id){ // verifica se o paciente que achou o crm igual é o proprio paciente
                         return false
                     }
@@ -207,17 +207,18 @@ export default {
 
         validaPaciente(){
           if(this.nome == "" || this.email == "" || this.telefone == "" || 
-            this.celular == "" || this.dtNascimento == "" || this.sexo == "",
-            this.cpf == "" || this.rua == "" || this.cep == "" || this.numCasa == "", 
+            this.celular == "" || this.dt_nascimento == "" || this.sexo == "",
+            this.cpf == "" || this.rua == "" || this.cep == "" || this.num_casa == "", 
             this.complemento == "" || this.bairro == "" || this.cidade == ""){
               alert("Preencha todos os campos!");
             }
             else{
-              if(this.cpfExiste){
+              if(this.cpfExiste()){
                 alert("CPF já cadastrado!");
               }
               else{
-                this.PostPaciente();
+                this.postPaciente();
+                alert("CHEGOU!")
               }
           }
         },
@@ -227,12 +228,12 @@ export default {
             this.email = "",
             this.telefone = "",
             this.celular = "",
-            this.dtNascimento = "",
+            this.dt_nascimento = "",
             this.sexo = "",
             this.cpf = "",
             this.rua = "",
             this.cep = "",
-            this.numCasa = "",
+            this.num_casa = "",
             this.complemento = "",
             this.bairro = "",
             this.cidade = ""
@@ -244,28 +245,27 @@ export default {
               email: this.email,
               telefone: this.telefone,
               celular: this.celular,
-              dtNascimento: this.dtNascimento,
+              dt_nascimento: this.dt_nascimento,
               sexo: this.sexo,
               cpf: this.cpf,
               rua: this.rua,
               cep: this.cep,
-              numCasa: this.numCasa,
+              num_casa: this.num_casa,
               complemento: this.complemento,
               bairro: this.bairro,
               cidade: this.cidade  
             }
 
-            if(axios.post(this.baseURI, obj).then((result) =>{ 
-            this.pacientes = result.data})){
-              alert("PACIENTE CADASTRADO!");
-              this.limpar();
-            }
-            else{
-              alert("Erro ao cadastrar!")
-            }
+            axios.post(this.baseURI, obj).then((result) =>{ 
+              this.pacientes = result.data
+            }).catch(function(error) {
+                console.log(error);
+            })
 
+            alert("PACIENTE CADASTRADO!");
+            this.limpar();
+        }
       }
-    }
 }
 </script>
 

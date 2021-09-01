@@ -444,7 +444,7 @@ export default {
             }
         },
 
-        PutPaciente(id){
+        putPaciente(id){
             let obj ={
                 nome: this.nome,
                 email: this.email,
@@ -462,26 +462,24 @@ export default {
 
             };
           
-            if(axios.put(this.baseURI+"/" + id, obj).then((result) =>{
-            console.log(result)})){
+            axios.put(this.baseURI+"/" + id, obj).then((result) =>{
+            console.log(result)
+            }).catch(function(error) {
+                console.log(error);
+            })
                 alert("Paciente atualizado!");
                 window.location.reload()
-            }
-            else{
-                alert("Erro ao atualizar!")
-            }
         },
 
         deletePaciente(id){
-            if(axios.delete(this.baseURI +"/"+ id,).then((result) =>{
-             console.log(result)})){
+            axios.delete(this.baseURI +"/"+ id,).then((result) =>{
+             console.log(result)
+             }).catch(function(error) {
+                console.log(error);
+            })
                 alert("Paciente deletado!");
                 window.location.reload()
-            }
-            else{
-                alert("Erro ao deletar!")
-            } 
-        },
+            },
 
         buscarQtd(){
             axios.get(this.baseURI + "/qtd?qtd=" + this.campo_qtd).then((result) =>{

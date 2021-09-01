@@ -18,7 +18,7 @@
                                 <td>{{ usuario.usuario }}</td>
                                 <td>{{ usuario.senha }}</td>
                                 <td>
-                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(usuario.id)">Editar</button> 
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" href="#divEdit" @click="preencheCampos(usuario.id)">Editar</button> 
                                 </td>
                                 <td>
                                     <button type="reset" class="btn btn-light btn-sm btn-block" @click="deleteUsuario(usuario.id)">Deletar</button> 
@@ -73,7 +73,7 @@
                                 <td>{{ usuario.usuario }}</td>
                                 <td>{{ usuario.senha }}</td>
                                 <td>
-                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(usuario.id)">Editar</button>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(usuario.id)" href="#divEdit">Editar</button>
                                     <button type="reset" class="btn btn-light btn-sm btn-block" @click="DeleteMedico(usuario.id)">Deletar</button>
                                 </td>
                             </tr>
@@ -128,7 +128,7 @@
             </div>
             </div>
 
-        <div class="container">
+        <div class="container" id="divEdit">
             <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="card-body p-0 d-none d-lg-block bg-primary text-center">
                     <br/>
@@ -309,6 +309,14 @@ export default {
 </script>
 
 <style>
+
+html {
+  scroll-behavior: smooth;
+}
+
+:target {
+  scroll-margin-top: .8em;
+}
 
 .centraliza {
     width: 555px;

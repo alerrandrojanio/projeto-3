@@ -82,12 +82,6 @@ data() {
     }
 },
     methods:{
-        getAll() {
-            axios.get(this.baseURI).then((result) =>{
-                    this.usuarios = result.data
-                })
-        },
-
         logar() {
             axios.post(this.baseLogin,
             {
@@ -115,10 +109,6 @@ data() {
             return;
         },
     },
-    
-    created: function(){
-        this.$nextTick(this.getAll)
-    }
 }
 </script>
 

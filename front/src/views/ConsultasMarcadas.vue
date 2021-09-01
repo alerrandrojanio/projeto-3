@@ -7,7 +7,7 @@
                         <!-- DIV ESQUERDA-->
                         <div class="col mx-auto text-center">
                         <br/>
-                        <table class="table table-light">
+                        <table class="table table-light table-responsive-sm">
                             <tr>
                                 <td>PACIENTE</td>
                                 <td>MÉDICO</td>
@@ -15,13 +15,13 @@
                                 <td>HORÁRIO</td>
                             </tr>
                             <tr v-for="consulta in consultas" :key="consulta.id" >
-                                <td>{{ consulta.id_paciente }}</td>
-                                <td>{{ consulta.id_medico }}</td>
+                                <td>{{ getNomePaciente(consulta.id_paciente) }}</td>
+                                <td>{{ getNomeMedico(consulta.id_medico) }}</td>
                                 <td>{{ consulta.data }}</td>
-                                <td>{{ consulta.horario }}</td>
+                                <td>{{ consulta.hora }}</td>
                                 <td>
                                     <!--<button type="reset" class="btn btn-light btn-sm btn-block" @click="preencheCampos(consulta.id)">Editar</button>-->
-                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="deleteConsulta(consulta.id)">Cancelar</button>
+                                    <button type="reset" class="btn btn-light btn-sm btn-block" @click="deleteConsulta(consulta.id)">X</button>
                                 </td>
                             </tr>
                             <!-- MOSTRANDO NOME NO LUGAR DO ID 
@@ -191,7 +191,7 @@ export default {
             axios.put(this.baseURI+"/" + id, obj).then((result) =>{
                 console.log(result)
             }).catch(function(error) {
-                alert(error);
+                console.log(error);
             })
                 alert("Consulta atualizado!")
                 window.location.reload()
@@ -201,11 +201,27 @@ export default {
             axios.delete(this.baseURI +"/"+ id,).then((result) =>{
              console.log(result)
             }).catch(function(error) {
-                alert(error);
+                console.log(error);
             })
 
             alert("Consulta cancelada!");
             window.location.reload()      
+        },
+
+        getNomePaciente(id_paciente){
+            for(var i = 0; i < this.pacientes.length; i++){
+                if(id_paciente == this.pacientes[i].id){
+                    return this.pacientes[i].nome
+                }
+            }
+        },
+
+        getNomeMedico(id_medico){
+            for(var i = 0; i < this.medicos.length; i++){
+                if(id_medico == this.medicos[i].id){
+                    return this.medicos[i].nome
+                }
+            }
         }
 
     },

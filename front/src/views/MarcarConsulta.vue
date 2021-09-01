@@ -169,7 +169,7 @@ export default {
             
             for(var i = 0; i < this.medicos.length; i++){
                 if(crm == this.medicos[i].crm){
-                    alert(this.medicos[i].id)
+                    //alert(this.medicos[i].id)
                     return this.medicos[i].id;
                 }
             }
@@ -181,7 +181,7 @@ export default {
             
             for(var i = 0; i < this.pacientes.length; i++){
                 if(cpf == this.pacientes[i].cpf){
-                    alert(this.pacientes[i].id)
+                    //alert(this.pacientes[i].id)
                     return this.pacientes[i].id;
                 }
             }   
@@ -200,7 +200,7 @@ export default {
             axios.post(this.baseURI, obj).then((result) =>{ 
                 this.consultas = result.data
             }).catch(function(error) {
-                alert(error);
+                console.log(error);
             })
             
             alert("CONSULTA MARCADA!");
@@ -219,7 +219,7 @@ export default {
             axios.put(this.baseURI+"/" + this.id, obj).then((result) =>{
               console.log(result)
             }).catch(function(error) {
-                alert(error);
+                console.log(error);
             })
         },
 
@@ -227,7 +227,7 @@ export default {
           axios.delete(this.baseURI +"/"+this.id,).then((result) =>{
               console.log(result)
           }).catch(function(error) {
-                alert(error);
+                console.log(error);
             })
         },
 
