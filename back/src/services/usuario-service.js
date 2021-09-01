@@ -15,7 +15,7 @@ class UsuarioService {
     }
 
     getQtd(qtd){
-      return usuarioRepo.getByQty(qtd)
+      return usuarioRepo.getByQtd(qtd)
     }
 
     update(id, usuario) {

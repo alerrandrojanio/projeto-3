@@ -51,7 +51,11 @@ const routes = [
     path: "/lista-usuarios",
     name:"Lista Usuários",
     component: () => import("../views/ListaUsuarios.vue")
-  }
+  },
+  { path: "/:pathMatch(.*)*", 
+    name: "not-found", 
+    component: () => import("../views/NotFound.vue") 
+  },
   
 ]
 

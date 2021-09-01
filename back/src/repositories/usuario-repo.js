@@ -24,7 +24,7 @@ exports.save = async (usuario) => {
     return result.rows;
   };
   
-  exports.getQtd = async (qtd) => {
+  exports.getByQtd = async (qtd) => {
     const result = await pool.query("SELECT * FROM usuarios LIMIT $1;",[qtd]);
     return result.rows;
   };

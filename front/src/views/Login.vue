@@ -44,7 +44,7 @@
                                             required>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block" @click="login">Entrar</button>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block" @click="logar()">Entrar</button>
 
                                     <hr>
 
@@ -77,7 +77,8 @@ data() {
             senha: "",
             usuarios: [],
             usuarioArray: [],
-            baseURI:"http://localhost:3000/usuarios"    
+            baseURI:"http://localhost:3000/usuarios",
+            baseLogin: "http://localhost:3000/usuarios/login"  
     }
 },
     methods:{
@@ -87,30 +88,32 @@ data() {
                 })
         },
 
-        login() {
-            for(var i = 0; i < this.usuarios.length; i++){
-                if(this.usuario == this.usuarios[i].usuario){
-                    if(this.senha == this.usuarios[i].senha){
-                        this.$router.replace('pagina-inicial'); continue;
-                    } else {
-                        alert("SENHA INCORRETA!");
-                    }
-                }  
+        logar() {
+            axios.post(this.baseLogin,
+            {
+                usuario: this.usuario,
+                senha: this.senha,
+            },
+            { 
+                withCredentials: true 
+            }).then((result) => {
+          
+            let userId = this.getCookie("userId");
+            
+            if (userId) {
+                localStorage.setItem("user", JSON.stringify(result.data));
             }
             
-            i = 0; 
-            while(i < this.usuarios.length){
-                if(this.usuario != this.usuarios[i].usuario){
-                    i++;
-                }
-                else{
-                    break;
-                }
-                if(i == this.usuarios.length){
-                    alert("USUARIO INEXISTENTE!");
-                }
-            }
-        }
+            this.$router.replace('pagina-inicial')
+            //this.$router.go();
+            });
+        },
+
+        getCookie(name) {
+            let match = document.cookie.match(new RegExp(name + "=([^;]+)"));
+            if (match) return match[1];
+            return;
+        },
     },
     
     created: function(){

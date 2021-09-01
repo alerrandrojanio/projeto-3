@@ -54,11 +54,17 @@
                     <i class="fas fa-edit"></i><span>Lista de Pacientes</span>
                 </router-link>
             </li>
+            <li class="nav-item">
+                <router-link to="lista-usuarios" class="nav-link">
+                    <i class="fas fa-edit"></i><span>Lista de Usuários</span>
+                </router-link>
+            </li>
 
             <li class="nav-item">
-                <router-link to="/" class="nav-link">
-                    <i class="fas fa-edit"></i><span>Sair</span>
-                </router-link>
+                <div @click="logout()" class="nav-link">
+        
+                    <i class="fas fa-edit" ></i><span>Sair</span>
+                </div>
             </li>
 
             <hr class="sidebar-divider d-none d-md-block">
@@ -162,9 +168,23 @@ export default {
                     this.medicos = result.data
                 })
         },
+
+        logout() {
+            axios.get("http://localhost:3000/usuarios/logout").then((result) => {
+                this.logged = false;
+                localStorage.removeItem("user");
+                console.log(result);
+                this.$router.replace('/')
+            });
+        },
     },
+  
     created: function(){
         this.$nextTick(this.getAll)
+        
+        if (localStorage.getItem("user")) {
+            this.logged = true;
+        }
     }
 }
 </script>
